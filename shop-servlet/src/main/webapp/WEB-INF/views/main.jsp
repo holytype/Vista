@@ -7,6 +7,11 @@
 <title>Main</title>
 </head>
 <body>
-
+	<div class="sidemenu__wrapper">
+	</div>
+	<div class="body__wrapper">
+	</div>
+	<div class="footer__wrapper">
+	</div>
 </body>
 </html>
