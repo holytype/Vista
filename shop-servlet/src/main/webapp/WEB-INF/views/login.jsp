@@ -8,10 +8,21 @@
 <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
 </head>
 <body>
-<label>아이디</label>
-<input type="text">
-<label>패스워드</label>
-<input type="passwrod">
-<div><button type="checkbox"></button><span></span></div>
+<div>
+	<div>
+		<label>아이디</label>
+		<input type="text">
+		<label>패스워드</label>
+		<input type="passwrod">
+		<span></span>
+	</div>
+	<div><button type="checkbox"></button><span></span></div>
+	<button type="button">로그인</button>
+	<div>
+		<a>아이디 찾기</a>
+		<a>비밀번호 찾기</a>
+		<a>회원가입</a>
+	</div>
+</div>
 </body>
 </html>
