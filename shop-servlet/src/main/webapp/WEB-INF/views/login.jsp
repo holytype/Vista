@@ -5,24 +5,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet"> --%>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
 <div>
+	<form id="login__form">
+		<div>
+			<label>아이디</label>
+			<input type="text" name="id">
+			<label>패스워드</label>
+			<input type="password" name="pw">
+			<span></span>
+		</div>
+		<div><button type="checkbox"></button><span></span></div>
+		<button type="button" class="btn__login">로그인</button>
+	</form>
 	<div>
-		<label>아이디</label>
-		<input type="text">
-		<label>패스워드</label>
-		<input type="passwrod">
-		<span></span>
-	</div>
-	<div><button type="checkbox"></button><span></span></div>
-	<button type="button">로그인</button>
-	<div>
-		<a>아이디 찾기</a>
+		<a >아이디 찾기</a>
 		<a>비밀번호 찾기</a>
-		<a>회원가입</a>
+		<a href="${pageContext.request.contextPath}/regist">회원가입</a>
 	</div>
 </div>
+<script>
+$(".btn__login").on("click",()=>{
+	$.ajax({
+		url:"${pageContext.request.contextPath}/login",
+		method:"post",
+		data:$("#login__form").serialize(),
+		success:(result)=>{
+			if(result=="null")
+				alert("로그인 실패");
+			else
+				window.location.href="${pageContext.request.contextPath}/main";
+		},
+		error:(request, status, error)=>{
+			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
+		}
+	});
+})
+</script>
 </body>
 </html>
