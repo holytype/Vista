@@ -36,14 +36,14 @@ public class RegisterConteroller extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer isMember = null;
-		isMember = service.registMember(new MemberDto(request.getParameter("id"),
+		Integer result = null;
+		result = service.registMember(new MemberDto(request.getParameter("id"),
 				request.getParameter("pw"),"default",request.getParameter("name"),
 				request.getParameter("address"),request.getParameter("phone"),
 				request.getParameter("email"),request.getParameter("gender"),
 				request.getParameter("account")));
 		
-		response.getWriter().append(String.valueOf(isMember));
+		response.getWriter().append(String.valueOf(result));
 	}
 
 }

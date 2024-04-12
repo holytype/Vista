@@ -72,7 +72,7 @@ $("joinus__btn").on("click",()=>{
 		method:"post",
 		data:$(".joinus__form1,.joinus__form1").serialize(),
 		success:(result)=>{
-			if(result=="null")
+			if(result=="null"||result=="0")
 				alert("가입 실패");
 			else
 				window.location.href="${pageContext.request.contextPath}/login";

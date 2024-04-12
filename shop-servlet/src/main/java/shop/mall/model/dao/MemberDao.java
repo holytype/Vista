@@ -40,7 +40,6 @@ public class MemberDao {
 	
 	//회원가입
 	public Integer registMember(Connection conn, MemberDto dto) {
-		Integer result = null;
 //		이름      널?       유형           
 //				------- -------- ------------ 
 //				M_ID    NOT NULL VARCHAR2(16) 
@@ -53,28 +52,27 @@ public class MemberDao {
 //				M_SEX            CHAR(3)      
 //				M_ACCT           VARCHAR2(15) 
 		//String sql = "insert into member(M_ID,M_PW,M_AUTH,M_NAME,M_ADDR,M_PHONE,M_EMAIL,M_SEX,M_ACCT) values()";
+		Integer result = null;
 		String sql = "insert into member values(?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt=null;
-		ResultSet rs = null;
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, sql);
-				pstmt.setString(2, sql);
-				pstmt.setString(3, sql);
-				pstmt.setString(4, sql);
-				pstmt.setString(5, sql);
-				pstmt.setString(6, sql);
-				pstmt.setString(7, sql);
-				pstmt.setString(8, sql);
-				pstmt.setString(9, sql);
+				pstmt.setString(1, dto.getmId());
+				pstmt.setString(2, dto.getmPw());
+				pstmt.setString(3, dto.getmAuth());
+				pstmt.setString(4, dto.getmName());
+				pstmt.setString(5, dto.getmAddr());
+				pstmt.setString(6, dto.getmPhone());
+				pstmt.setString(7, dto.getmEmail());
+				pstmt.setString(8, dto.getmSex());
+				pstmt.setString(9, dto.getmAcct());
 				
-				rs=pstmt.executeQuery();
+				result=pstmt.executeUpdate();
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		
-		close(rs);
 		close(pstmt);
 		return result;
 	}
