@@ -13,15 +13,15 @@ import shop.mall.model.service.MemberService;
 /**
  * Servlet implementation class RegisterConteroller
  */
-@WebServlet("/regist")
-public class RegisterConteroller extends HttpServlet {
+@WebServlet("/joinus")
+public class JoinusConteroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = new MemberService();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterConteroller() {
+    public JoinusConteroller() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class RegisterConteroller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/regist.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/joinus.jsp").forward(request, response);
 	}
 
 	/**

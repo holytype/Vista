@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 		<div class="sidemenu">
 			<h1><a class="sidemenu__logo">UPNORMAL</a></h1>
 			<div class="sidemenu__topmenu">
@@ -10,10 +11,10 @@
 						<a href="${pageContext.request.contextPath }/login">LOGIN</a>
 						</c:when>
 						<c:otherwise>
-						<a href="${pageContext.request.contextPath }/logout">LOGOOUT</a>
+						<a href="#" onclick="logoutFunction(); return false;">LOGOOUT</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="${pageContext.request.contextPath }/regist">JOIN US</a><span>+2,000</span>
+					<a href="${pageContext.request.contextPath }/joinus">JOIN US</a><span>+2,000</span>
 				</div>
 				<div>
 					<a>ORDER</a><a>MY PAGE<span></span></a><a>DELEVIERY</a>
@@ -56,3 +57,15 @@
 				</p>
 			</div>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script>
+		function logoutFunction(){
+			$.ajax({
+				url: "${pageContext.request.contextPath}/logout",
+				method: "post",
+				success: ()=>{
+					location.href="${pageContext.request.contextPath}/main";
+				}
+			});
+		}
+		</script>
