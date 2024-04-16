@@ -1,4 +1,4 @@
-package shop.mall.controller;
+package shop.mall.controller.mypage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,22 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.mall.model.dto.MemberInfoDto;
-import shop.mall.model.dto.MemberLoginDto;
-import shop.mall.model.service.MemberService;
-
 /**
- * Servlet implementation class login
+ * Servlet implementation class OrderController
  */
-@WebServlet("/login")
-public class LoginController extends HttpServlet {
+@WebServlet("/mywishlist")
+public class MyWishlistController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	MemberService service = new MemberService();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public MyWishlistController() {
         super();
     }
 
@@ -30,24 +25,14 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/mywishlist.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		MemberInfoDto loginLog = null;
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		loginLog = service.memberLogin(new MemberLoginDto(id,pw));
-
-		if(loginLog!=null) {
-			request.getSession().setAttribute("loginLog", loginLog);
-		}
-
-		response.getWriter().append(String.valueOf(loginLog));
+		doGet(request, response);
 	}
 
 }

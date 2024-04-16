@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>Manager</title>
 <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/sidemenu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">

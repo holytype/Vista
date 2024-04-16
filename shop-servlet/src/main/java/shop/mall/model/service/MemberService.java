@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 import shop.mall.model.dao.MemberDao;
 import shop.mall.model.dto.MemberDto;
-import shop.mall.model.dto.MemberInfo;
+import shop.mall.model.dto.MemberInfoDto;
 import shop.mall.model.dto.MemberLoginDto;
 
 import static shop.mall.common.jdbc.JdbcTemplate.*;
@@ -13,8 +13,8 @@ public class MemberService {
 	MemberDao dao = new MemberDao();
 	
 	//로그인
-	public MemberInfo memberLogin(MemberLoginDto dto) {
-		MemberInfo result = null;
+	public MemberInfoDto memberLogin(MemberLoginDto dto) {
+		MemberInfoDto result = null;
 		Connection conn = getConnection(true);
 		result = dao.memberLogin(conn, dto);
 		close(conn);

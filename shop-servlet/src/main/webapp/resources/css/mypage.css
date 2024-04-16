@@ -2,7 +2,7 @@
 
 .path{
 	text-align: right;
-	padding: 50px 100px 0 0;
+	padding: 10% 10% 0 0;
 }
 
 .mypage__wrapper{
@@ -39,9 +39,15 @@
 .mypage__menu.grid{
 	display:grid;
 	grid-template-columns:1fr 1fr 1fr 1fr;
-	gap:50px;
+	gap:30px;
 }
 
 .mypage__menu.grid div{
 	border : 1px solid black;
+	display:flex;
+	flex-direction: column;
+	text-align: center;
+}
+.mypage__menu.grid div *{
+	display:block;
 }

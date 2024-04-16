@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import shop.mall.model.dto.MemberDto;
-import shop.mall.model.dto.MemberInfo;
+import shop.mall.model.dto.MemberInfoDto;
 import shop.mall.model.dto.MemberLoginDto;
 
 import static shop.mall.common.jdbc.JdbcTemplate.*;
@@ -14,9 +14,9 @@ import static shop.mall.common.jdbc.JdbcTemplate.*;
 public class MemberDao {
 	
 	// 로그인
-	public MemberInfo memberLogin(Connection conn , MemberLoginDto dto) {
-		MemberInfo result = null;
-		String sql = "select M_ID,M_NAME from member where m_id=? and m_pw=?";
+	public MemberInfoDto memberLogin(Connection conn , MemberLoginDto dto) {
+		MemberInfoDto result = null;
+		String sql = "select M_ID,M_NAME,M_AUTH from member where m_id=? and m_pw=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -27,7 +27,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				result = new MemberInfo(rs.getString("M_ID"), rs.getString("M_NAME"));
+				result = new MemberInfoDto(rs.getString("M_ID"), rs.getString("M_NAME"), rs.getString("M_AUTH"));
 			}
 			
 		} catch (SQLException e) {

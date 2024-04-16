@@ -5,7 +5,6 @@ public class MemberLoginDto {
 	private String mId;
 	private String mPw;
 	
-	
 	public MemberLoginDto(String mId, String mPw) {
 		super();
 		this.mId = mId;

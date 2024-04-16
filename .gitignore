@@ -24,5 +24,7 @@ hs_err_pid*
 replay_pid*
 
 # 직접 입력
-# bin/
+bin/
 .properties
+.metadata
+shop-servlet/src/main/java/shop/mall/common/jdbc/driver.properties
