@@ -21,6 +21,15 @@ public class MemberService {
 		return result;
 	}
 	
+	//아이디 중복 체크
+	public Integer idDuplicateCheck(String mId) {
+		Integer result = null;
+		Connection conn = getConnection(true);
+		result = dao.idDuplicateCheck(conn, mId);
+		close(conn);
+		return result;
+	}
+	
 	//회원가입 
 	public Integer registMember(MemberDto dto) {
 		Integer result = null;
@@ -29,5 +38,7 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+
 	
 }

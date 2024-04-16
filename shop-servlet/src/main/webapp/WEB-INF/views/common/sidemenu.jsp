@@ -9,15 +9,15 @@
 					<c:choose>
 						<c:when test="${empty loginLog }">
 						<a href="${pageContext.request.contextPath }/login">LOGIN</a>
+						<a href="${pageContext.request.contextPath }/joinus">JOIN US</a><span>+2,000</span>
 						</c:when>
 						<c:otherwise>
-						<a href="#" onclick="logoutFunction(); return false;">LOGOOUT</a>
+						<a href="#" onclick="logoutFunction(); return false;">LOGOUT</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="${pageContext.request.contextPath }/joinus">JOIN US</a><span>+2,000</span>
 				</div>
 				<div>
-					<a>ORDER</a><a>MY PAGE<span></span></a><a>DELEVIERY</a>
+					<a>ORDER</a><a>MY PAGE<span></span></a><a>DELIVERY</a>
 				</div>
 			</div>
 			<div class="sidemenu__searchbox">

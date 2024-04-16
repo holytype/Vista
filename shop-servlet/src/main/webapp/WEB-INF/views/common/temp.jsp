@@ -8,6 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/sidemenu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
 	<div class="sidemenu__wrapper">

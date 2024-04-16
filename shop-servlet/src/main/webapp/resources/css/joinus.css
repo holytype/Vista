@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.path{
+	text-align: right;
+	padding: 50px 100px 0 0;
+}
+
+.joinus__wrapper {
+	padding: 0 50px;
+}
+
+table{
+	width: 100%;
+	border-top: 1px solid black;
+	marign:0;
+	padding:0;
+	border-spacing: 0;
+}
+
+td{
+	border-bottom: 1px solid black;
+}
+
+tr > td:nth-child(1) {
+	width: 300px;
+	border-right: 1px solid black;
+}
+
+strong {
+	display:block;
+	margin-top: 100px;
+}

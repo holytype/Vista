@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.path{
+	text-align: right;
+	padding: 50px 100px 0 0;
+}
+
+.mypage__wrapper{
+	display:flex;
+	flex-direction: column;
+	padding:0 50px;
+}
+
+.mypage__title{
+	text-align: center;
+}
+
+.mileage__status{
+	border:1px solid black;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.order__status{
+	border:1px solid black;
+}
+
+.order__title{
+	text-align: center;
+}
+
+.order__status__inner{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.mypage__menu.grid{
+	display:grid;
+	grid-template-columns:1fr 1fr 1fr 1fr;
+	gap:50px;
+}
+
+.mypage__menu.grid div{
+	border : 1px solid black;
+}
