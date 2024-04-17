@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+
+	<resultMap type="shop.mall.model.dto.MemberInfoDto" id="MemberInfoDtoResultMap">
+		<result column="M_ID" property="memberId"/>
+		<result column="M_NAME" property="memberName"/>
+		<result column="M_AUTH" property="memberAuth"/>
+	</resultMap>
+
+	<select id="idDuplicateCheck" parameterType="string" resultType="integer">
+		select count(*) c from member where m_id=#{memberId}
+	</select>
+	
+	<select id="memberLogin" parameterType="string" resultMap="MemberInfoDtoResultMap">
+		select M_ID,M_NAME,M_AUTH from member where m_id=#{memberId} and m_pw=#{memberPw}
+	</select>
+</mapper>

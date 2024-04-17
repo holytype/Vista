@@ -2,6 +2,9 @@ package shop.mall.model.service;
 
 import java.sql.Connection;
 
+import org.apache.ibatis.session.SqlSession;
+
+import shop.mall.common.mybatis.MybatisTemplate;
 import shop.mall.model.dao.MemberDao;
 import shop.mall.model.dto.MemberDto;
 import shop.mall.model.dto.MemberInfoDto;
@@ -24,9 +27,13 @@ public class MemberService {
 	//아이디 중복 체크
 	public Integer idDuplicateCheck(String mId) {
 		Integer result = null;
-		Connection conn = getConnection(true);
-		result = dao.idDuplicateCheck(conn, mId);
-		close(conn);
+//		Connection conn = getConnection(true);
+//		result = dao.idDuplicateCheck(conn, mId);
+//		close(conn);
+		
+		SqlSession session = MybatisTemplate.getSqlSession(); 
+		result = dao.idDuplicateCheckMybatis(session, mId);
+		
 		return result;
 	}
 	

@@ -2,62 +2,72 @@ package shop.mall.model.dto;
 
 public class MemberDto {
 
-	private String mId;
-	private String mPw;
-	private String mAuth;
-	private String mName;
-	private String mAddr;
-	private String mPhone;
-	private String mEmail;
-	private String mSex;
-	private String mAcct;
+	private String memberId;
+	private String memberPw;
+	private String memberAuth;
+	private String memberName;
+	private String memberAddr;
+	private String memberPhone;
+	private String memberEmail;
+	private String memberGender;
+	private String memberAcct;
 	
-	public MemberDto(String mId, String mPw, String mAuth, String mName, String mAddr, String mPhone, String mEmail,
-			String mSex, String mAcct) {
+	public MemberDto(String memberId, String memberPw, String memberAuth, String memberName, String memberAddr,
+			String memberPhone, String memberEmail, String memberGender, String memberAcct) {
 		super();
-		this.mId = mId;
-		this.mPw = mPw;
-		this.mAuth = mAuth;
-		this.mName = mName;
-		this.mAddr = mAddr;
-		this.mPhone = mPhone;
-		this.mEmail = mEmail;
-		this.mSex = mSex;
-		this.mAcct = mAcct;
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberAuth = memberAuth;
+		this.memberName = memberName;
+		this.memberAddr = memberAddr;
+		this.memberPhone = memberPhone;
+		this.memberEmail = memberEmail;
+		this.memberGender = memberGender;
+		this.memberAcct = memberAcct;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MemberDto [mId=" + mId + ", mPw=" + mPw + ", mAuth=" + mAuth + ", mName=" + mName + ", mAddr=" + mAddr
-				+ ", mPhone=" + mPhone + ", mEmail=" + mEmail + ", mSex=" + mSex + ", mAcct=" + mAcct + "]";
+		return "MemberDto [memberId=" + memberId + ", memberPw=" + memberPw + ", memberAuth=" + memberAuth
+				+ ", memberName=" + memberName + ", memberAddr=" + memberAddr + ", memberPhone=" + memberPhone
+				+ ", memberEmail=" + memberEmail + ", memberGender=" + memberGender + ", memberAcct=" + memberAcct
+				+ "]";
 	}
-	
-	public String getmId() {
-		return mId;
+
+	public String getMemberId() {
+		return memberId;
 	}
-	public String getmPw() {
-		return mPw;
+
+	public String getMemberPw() {
+		return memberPw;
 	}
-	public String getmAuth() {
-		return mAuth;
+
+	public String getMemberAuth() {
+		return memberAuth;
 	}
-	public String getmName() {
-		return mName;
+
+	public String getMemberName() {
+		return memberName;
 	}
-	public String getmAddr() {
-		return mAddr;
+
+	public String getMemberAddr() {
+		return memberAddr;
 	}
-	public String getmPhone() {
-		return mPhone;
+
+	public String getMemberPhone() {
+		return memberPhone;
 	}
-	public String getmEmail() {
-		return mEmail;
+
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public String getmSex() {
-		return mSex;
+
+	public String getMemberGender() {
+		return memberGender;
 	}
-	public String getmAcct() {
-		return mAcct;
+
+	public String getMemberAcct() {
+		return memberAcct;
 	}
 	
 }

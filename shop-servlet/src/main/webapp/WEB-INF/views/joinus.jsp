@@ -114,10 +114,12 @@
 			method:"post",
 			data:{id:$("input[name=id]").val()},
 			success:(result)=>{
-				if(result=="null"){
+				if(result=="0"){
 					alert("사용가능한 아이디 입니다.");
-				} else {
+				} else if(result="1") {
 					alert("중복입니다.")
+				} else {
+					alert("오류가 발생했습니다.\n새로고침 해주세요.");
 				}
 			},
 			error:(request, status, error)=>{

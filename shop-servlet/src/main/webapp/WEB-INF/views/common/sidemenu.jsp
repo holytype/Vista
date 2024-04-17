@@ -20,7 +20,9 @@
 					</c:choose>
 				</div>
 				<div>
-					<a>ORDER</a><a>MY PAGE<span></span></a><a>DELIVERY</a>
+					<a href="${pageContext.request.contextPath }/myorder">ORDER</a>
+					<a href="${pageContext.request.contextPath }/mypage">MY PAGE<span></span>
+					</a href="https://www.doortodoor.co.kr/parcel/pa_004.jsp"><a>DELIVERY</a>
 				</div>
 			</div>
 			<div class="sidemenu__searchbox">

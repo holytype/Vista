@@ -91,17 +91,20 @@
 	<script>
 		$(loadedHandler);
 		function loadedHandler(){
-			linkurl("order");
-			linkurl("profile");
-			linkurl("wishlist");
-			linkurl("mileage");
-			linkurl("board");
-			linkurl("address");
-		}
+ 			linkUrl("order");
+ 			linkUrl("profile");
+ 			linkUrl("wishlist");
+ 			linkUrl("mileage");
+ 			linkUrl("board");
+ 			linkUrl("address");
+		}	
 		
 		function linkUrl(url){
-			$(".gird."+url).on("click",()=>{
-				location.href="${pageContext.request.contextPath}/"+url;
+			$(".grid."+url)
+			.css("cursor","pointer")
+			.hover(()=>{$(".grid."+url).css({"color":"grey","border-color":"grey"})},()=>{$(".grid."+url).css({"color":"black","border-color":"black"})})
+			.on("click",()=>{
+				location.href="${pageContext.request.contextPath}/my"+url;
 			});
 		}
 	</script>

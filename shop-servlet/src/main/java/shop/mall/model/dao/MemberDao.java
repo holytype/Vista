@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.ibatis.session.SqlSession;
+
 import shop.mall.model.dto.MemberDto;
 import shop.mall.model.dto.MemberInfoDto;
 import shop.mall.model.dto.MemberLoginDto;
@@ -62,6 +64,10 @@ public class MemberDao {
 		return result;
 	}
 	
+	public Integer idDuplicateCheckMybatis(SqlSession session, String mId) {
+		return session.selectOne("member.idDuplicateCheck",mId);
+	}
+	
 	//회원가입
 	public Integer registMember(Connection conn, MemberDto dto) {
 		Integer result = null;
@@ -69,15 +75,14 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getmId());
-				pstmt.setString(2, dto.getmPw());
-//				pstmt.setString(3, dto.getmAuth());
-				pstmt.setString(3, dto.getmName());
-				pstmt.setString(4, dto.getmAddr());
-				pstmt.setString(5, dto.getmPhone());
-				pstmt.setString(6, dto.getmEmail());
-				pstmt.setString(7, dto.getmSex());
-				pstmt.setString(8, dto.getmAcct());
+				pstmt.setString(1, dto.getMemberId());
+				pstmt.setString(2, dto.getMemberPw());
+				pstmt.setString(3, dto.getMemberName());
+				pstmt.setString(4, dto.getMemberAddr());
+				pstmt.setString(5, dto.getMemberPhone());
+				pstmt.setString(6, dto.getMemberEmail());
+				pstmt.setString(7, dto.getMemberGender());
+				pstmt.setString(8, dto.getMemberAcct());
 				
 				result=pstmt.executeUpdate();
 				
