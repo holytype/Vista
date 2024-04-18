@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +24,121 @@
 		<section class="slider__wrapper">
 			<div class="slider__inner">
 				<div class="main__slider">
-					<a><img src="https://file.cafe24cos.com/banner-admin-live/upload/jinwoo3664/2fade598-8de5-4288-e5d5-1c2836580dd0.jpeg"></a>
-					<a><img src="https://file.cafe24cos.com/banner-admin-live/upload/jinwoo3664/56cccd3a-5054-4fd0-e3a2-ccf752a1db9c.jpeg"></a>
-					<a><img src="https://file.cafe24cos.com/banner-admin-live/upload/jinwoo3664/3df806c2-3830-4d56-cccb-74212ce0238e.jpeg"></a>
-					<a><img src="https://file.cafe24cos.com/banner-admin-live/upload/jinwoo3664/7a0fc1b0-047b-44c0-bca2-662edd7792ad.jpeg"></a>
+					<c:if test="${empty slideImage}">
+						<a><img src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					</c:if>
+					<c:forEach items="${slideImage}" var="image">
+						<a><img src="${image }" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="slider__menu">
 				<ul>
-					<li><img src="https://upnormal.kr/web/upload/category/editor/2023/03/31/35bda086ff0705992afc8083b454307c.jpg"><span>Best_30</span></li>
-					<li><img src="https://upnormal.kr/web/upload/category/editor/2023/03/31/ca03b71b8cd515e934d921b9f2a23bf1.jpg"><span>OUTER</span></li>
-					<li><img src="https://upnormal.kr/web/upload/category/editor/2023/03/31/80b23a5a567dcfe7be6d05dab36e2f6f.jpg"><span>TOP</span></li>
-					<li><img src="https://upnormal.kr/web/upload/category/editor/2022/09/12/bc28a781c3245909dc65f55d59004bf5.jpg"><span>BOTTOM</span></li>
+					<c:if test="${empty slideMenuImage}">
+						<a><img src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					</c:if>
+					<c:forEach items="${slideMenuImage}" var="image">
+						<a><img src="${image }" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					</c:forEach>
+					<li><img src="${slideMenu[0].image}"><span>${slideMenu[0].desc}</span></li>
+					<li><img src="${slideMenu[1].image}"><span>${slideMenu[1].desc}</span></li>
+					<li><img src="${slideMenu[2].image}"><span>${slideMenu[2].desc}</span></li>
+					<li><img src="${slideMenu[3].image}"><span>${slideMenu[3].desc}</span></li>
 				</ul>
 			</div>
+		</section>
+		<section class="grid__wrapper">
+			<div class="grid__header">
+				<strong>NEW ARRIVALS</strong>
+				<p>신상품은 매주 화요일,금요일 업데이트됩니다.<br>
+				할인은 2일간 적용됩니다.</p>
+			</div>
+			<ul class="grid__box">
+				<li class="item__box">
+					<div class="image__box">
+						<a><img src="https://upnormal.kr/web/product/medium/202404/b384d496282d7d97c615ce4f6feaf8e1.jpg"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span>흑</span>
+							<span>백</span>
+						</div>
+						<strong class="item__title">제------목</strong>
+						<span class="item__price">9999원</span>
+						<p class="item__desc">차가운 도시의 남자<p>
+					</div>
+				</li>
+				<li class="item__box">
+					<div class="image__box">
+						<a><img src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span>흑</span>
+							<span>백</span>
+						</div>
+						<strong class="item__title">제------목</strong>
+						<span class="item__price">9999원</span>
+						<p class="item__desc">차가운 도시의 남자<p>
+					</div>
+				</li>
+				<li class="item__box">
+					<div class="image__box">
+						<a><img src="https://upnormal.kr/web/product/medium/202404/b384d496282d7d97c615ce4f6feaf8e1.jpg"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span></span>
+							<span></span>
+						</div>
+						<strong class="item__title"></strong>
+						<span class="item__price"></span>
+						<p class="item__desc"><p>
+					</div>
+				</li>
+								<li class="item__box">
+					<div class="image__box">
+						<a><img src="https://upnormal.kr/web/product/medium/202404/b384d496282d7d97c615ce4f6feaf8e1.jpg"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span></span>
+							<span></span>
+						</div>
+						<strong class="item__title"></strong>
+						<span class="item__price"></span>
+						<p class="item__desc"><p>
+					</div>
+				</li>
+				<li class="item__box">
+					<div class="image__box">
+						<a><img src="https://upnormal.kr/web/product/medium/202404/b384d496282d7d97c615ce4f6feaf8e1.jpg"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span></span>
+							<span></span>
+						</div>
+						<strong class="item__title"></strong>
+						<span class="item__price"></span>
+						<p class="item__desc"><p>
+					</div>
+				</li>
+				<li class="item__box">
+					<div class="image__box">
+						<a><img src="https://upnormal.kr/web/product/medium/202404/b384d496282d7d97c615ce4f6feaf8e1.jpg"></a>
+					</div>
+					<div class="desc__box">
+						<div class="item__color">
+							<span></span>
+							<span></span>
+						</div>
+						<strong class="item__title"></strong>
+						<span class="item__price"></span>
+						<p class="item__desc"><p>
+					</div>
+				</li>
+			</ul>
 		</section>
 	</div>
 	</div>
@@ -52,8 +155,6 @@ $(document).ready(function () {
 
      // 슬라이더 초기화
     slider.on('init', function (event, slick) {
-/* 		slider.width("1920px");
-        slider.height("450px"); */
         slider.addClass('slick-autoplaying');
     });
 
@@ -62,7 +163,7 @@ $(document).ready(function () {
         infinite: true, // 무한 반복 여부를 설정합니다.
         speed: 500, // 페이드 인/아웃 속도를 설정합니다.
         autoplay: true, // 자동 재생 여부를 설정합니다.
-        autoplaySpeed: 2000, // 자동 재생 속도를 설정합니다.
+        autoplaySpeed: 1500, // 자동 재생 속도를 설정합니다.
 
         prevArrow: '<button type="button" class="slick-prev">Previous</button>',
         nextArrow: '<button type="button" class="slick-next">Next</button>',

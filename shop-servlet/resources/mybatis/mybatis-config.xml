@@ -39,6 +39,7 @@
  	
  	<mappers>
  		<mapper resource="mybatis/mappers/member-mapper.xml"/>
+ 		<mapper resource="mybatis/mappers/manage-mapper.xml"/>
  	</mappers>
  	
  </configuration>

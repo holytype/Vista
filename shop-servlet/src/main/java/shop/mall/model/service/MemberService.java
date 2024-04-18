@@ -31,7 +31,7 @@ public class MemberService {
 //		result = dao.idDuplicateCheck(conn, mId);
 //		close(conn);
 		
-		SqlSession session = MybatisTemplate.getSqlSession(); 
+		SqlSession session = MybatisTemplate.getSqlSession(true); 
 		result = dao.idDuplicateCheckMybatis(session, mId);
 		
 		return result;

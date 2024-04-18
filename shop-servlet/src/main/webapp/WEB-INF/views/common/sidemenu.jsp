@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 		<div class="sidemenu">
 			<h1><a class="sidemenu__logo">UPNORMAL</a></h1>
@@ -21,8 +22,8 @@
 				</div>
 				<div>
 					<a href="${pageContext.request.contextPath }/myorder">ORDER</a>
-					<a href="${pageContext.request.contextPath }/mypage">MY PAGE<span></span>
-					</a href="https://www.doortodoor.co.kr/parcel/pa_004.jsp"><a>DELIVERY</a>
+					<a href="${pageContext.request.contextPath }/mypage">MY PAGE<span></span></a>
+					<a href="https://www.doortodoor.co.kr/parcel/pa_004.jsp" target="_blank">DELIVERY</a>
 				</div>
 			</div>
 			<div class="sidemenu__searchbox">
@@ -35,14 +36,9 @@
 			<div class="sidemenu__midmenu">
 				<div class="sidemenu__category">
 				<span>CATEGORY</span>
-					<a>NEW</a>
-					<a>BEST_30</a>
-					<a>OUTER</a>
-					<a>SHIRTS</a>
-					<a>TOP</a>
-					<a>BOTTOM</a>
-					<a>SHOES</a>
-					<a>ACC</a>
+					<c:forEach items="${menuCategory}" var="category">
+					<a href="${pageContext.request.contextPath }/${fn:toLowerCase(category)}">${category }</a>
+					</c:forEach>
 				</div>
 				<div class="sidemenu__board">
 				<span>BOARD</span>

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import shop.mall.model.dto.MemberDto;
 import shop.mall.model.service.MemberService;
 
@@ -40,6 +42,7 @@ public class JoinusConteroller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		Integer result = null;
 
 		result = service.registMember(new MemberDto(request.getParameter("id"),
