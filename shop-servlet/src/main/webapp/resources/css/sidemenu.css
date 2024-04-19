@@ -11,6 +11,14 @@
 	z-index:2000;
 }
 
+.sidemenu__logo{
+	display:block;
+	height:200px;
+	width:200px;
+	background:url(../images/logo.png) no-repeat;
+	background-size: contain;
+}
+
 .sidemenu__topmenu {
 	margin-top: 10px;
 }

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 		<div class="sidemenu">
-			<h1><a class="sidemenu__logo">UPNORMAL</a></h1>
+			<h1><a class="sidemenu__logo" href="${pageContext.request.contextPath }/main"></a></h1>
 			<div class="sidemenu__topmenu">
 				<div>
 					<c:choose>

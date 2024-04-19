@@ -49,7 +49,14 @@ $(".btn__login").on("click",()=>{
 			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
 		}
 	});
+	
+	href="${pageContext.request.contextPath }/main"
 })
+
+$(".login__logo").css("cursor","pointer")
+.on("click",()=>{
+	location.href="${pageContext.request.contextPath}/main";
+});
 </script>
 </body>
 </html>

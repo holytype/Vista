@@ -15,6 +15,9 @@
 
 .main__slider .slick-slide{
 	float:left;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .main__slider img{
@@ -85,11 +88,25 @@
 	gap:10px;
 }
 
-.grid__box img{
-	max-width: 100%;
+.grid__box .item__box{
+	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
-.desc_box{
+.grid__box .image__box{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.grid__box img{
+	max-width: 100%;
+	height: auto;
+}
+
+.grid__box .desc__box{
 	display: flex;
 	flex-direction: column;
 }

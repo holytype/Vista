@@ -1,6 +1,7 @@
 package shop.mall.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import shop.mall.model.dto.MainGridDto;
 import shop.mall.model.service.MainService;
 
 /**
@@ -39,7 +43,14 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		MainGridDto dto= new MainGridDto("1", "1", "1", "1", "1");
+		List<MainGridDto> result = new ArrayList<MainGridDto>();
+		result.add(dto);
+		result.add(dto);
+		result.add(dto);
+		result.add(dto);
+		Gson data = new Gson();
+		response.getWriter().append(data.toJson(result));
 	}
 
 }
