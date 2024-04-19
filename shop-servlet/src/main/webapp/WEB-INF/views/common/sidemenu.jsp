@@ -14,7 +14,7 @@
 						</c:when>
 						<c:otherwise>
 						<a href="#" onclick="logoutFunction(); return false;">LOGOUT</a>
-						<c:if test="${loginLog.mAuth==0 }">
+						<c:if test="${loginLog.memberAuth==0 }">
 								<a href="${pageContext.request.contextPath }/manager">MANAGER</a>
 						</c:if>
 						</c:otherwise>

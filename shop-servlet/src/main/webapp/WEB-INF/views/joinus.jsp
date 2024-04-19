@@ -84,7 +84,7 @@
 	<div class="footer__wrapper">
 		<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
-	
+	<%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
 	<script>
 	$(loadedHandler);
 	

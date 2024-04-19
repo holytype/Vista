@@ -17,70 +17,30 @@
 	</div>
 	<div class="body__wrapper">
 		<div class="path">
-			<span>HOME</span>  &gt; <span>MY PAGE</span>
+			<span>HOME</span>  &gt; <span>Manager</span>
 		</div>
 	<div class="mypage__wrapper">
-		<div class ="mypage__title"><strong>MY PAGE</strong></div>
-		<section class="mileage__status">
-			<div>
-				<div><span>가용적립금</span><span>0원</span></div>
-				<div><span>사용적립금</span><span>0원</span></div>
-			</div>
-			<div>
-				<div><span>누적적립금</span><span>0원</span></div>
-				<div><span>누적주문</span><span>0원</span></div>
-			</div>
-		</section>
-		<section class="order__status">
-			<div class="order__title">주문처리현황</div>
-			<div class="order__status__inner">
-				<div>
-					<span>입금전</span>
-					<a>0</a>
-				</div>
-				<div>
-					<span>배송준비중</span>
-					<a>0</a>
-				</div>
-				<div>
-					<span>배송중</span>
-					<a>0</a>
-				</div>
-				<div>
-					<span>배송완료</span>
-					<a>0</a>
-				</div>
-				<div>
-					<div><span>취소</span><a>0</a></div>
-					<div><span>교환</span><a>0</a></div>
-					<div><span>반품</span><a>0</a></div>
-				</div>
-			</div>
-		</section>
+		<div class ="mypage__title"><strong>Manager</strong></div>
 		<div class="mypage__menu grid">
 			<div class="grid order">
-				<strong>ORDER</strong>
-				<span>주문내역조회<sap>
+				<strong>CATEGORY</strong>
+				<span>카테고리 추가/제거/수정<span>
 			</div>
 			<div class="grid profile">
-				<strong>PROFILE</strong>
-				<span>회원정보</span>
+				<strong>PRODUCT</strong>
+				<span>상품 등록/삭제/수정</span>
 			</div>
 			<div class="grid wishlist">
-				<strong>WISHLIST</strong>
-				<span>관심상품</span>
+				<strong>NOTICE</strong>
+				<span>공지사항 관리</span>
 			</div>
 			<div class="grid mileage">
 				<strong>MILEAGE</strong>
-				<span>적립금</span>
+				<span>회원 마일리지 현황</span>
 			</div>
 			<div class="grid board">
-				<strong>BOARD</strong>
-				<span>게시물관리</span>
-			</div>
-			<div class="grid address">
-				<strong>ADDRESS</strong>
-				<span>배송지관리</span>
+				<strong>ORDER</strong>
+				<span>회원 주문 현황</span>
 			</div>
 		</div>
 	</div>
@@ -88,6 +48,7 @@
 	<div class="footer__wrapper">
 		<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
+	<%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
 	<script>
 		$(loadedHandler);
 		function loadedHandler(){

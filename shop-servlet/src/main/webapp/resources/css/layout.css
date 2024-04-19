@@ -24,3 +24,14 @@
 	z-index:2001;
 	min-width: 1020px;
 }
+
+#btn__direct{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	display: flex;
+	flex-direction: column;
+	text-decoration-line:none;
+	color:black;
+	z-index: 2002;
+}
