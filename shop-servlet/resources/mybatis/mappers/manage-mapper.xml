@@ -3,7 +3,7 @@
 <mapper namespace="manage">
 
 	<select id="getMenuCategory" resultType="string">
-		SELECT * FROM SIDE_MENU2
+		SELECT * FROM ITEM_CATEGORY
 	</select>
 	
 </mapper>

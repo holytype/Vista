@@ -9,10 +9,10 @@
 	</resultMap>
 
 	<select id="idDuplicateCheck" parameterType="string" resultType="integer">
-		select count(*) c from member where m_id=#{memberId}
+		select count(*) c from member where mem_id=#{memberId}
 	</select>
 	
 	<select id="memberLogin" parameterType="string" resultMap="MemberInfoDtoResultMap">
-		select M_ID,M_NAME,M_AUTH from member where m_id=#{memberId} and m_pw=#{memberPw}
+		select M_ID,M_NAME,M_AUTH from member where mem_id=#{memberId} and mem_pw=#{memberPw}
 	</select>
 </mapper>
