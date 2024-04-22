@@ -1,6 +1,10 @@
 package shop.mall.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,14 +48,24 @@ public class JoinusConteroller extends HttpServlet {
 			throws ServletException, IOException {
 		
 		Integer result = null;
+		
+		String postno = request.getParameter("address1");
+		String address = request.getParameter("address2")+request.getParameter("address3")+" "+request.getParameter("address4");
+		
+		if(request.getParameter("pw1")!=request.getParameter("pw2")) {
+			response.getWriter().append("password error");
+			return;
+		}
 
-		result = service.registMember(new MemberDto(request.getParameter("id"),
-				request.getParameter("pw"),"default",request.getParameter("name"),
-				request.getParameter("address"),request.getParameter("phone"),
-				request.getParameter("email"),request.getParameter("gender"),
-				request.getParameter("account")));
-
-		response.getWriter().append(String.valueOf(result));
+		/*
+		 * result = service.registMember(new MemberDto(request.getParameter("id"),
+		 * request.getParameter("pw1"),"default",request.getParameter("name"), postno,
+		 * address,request.getParameter("phone"),
+		 * request.getParameter("email"),request.getParameter("gender"),
+		 * request.getParameter("bank"),request.getParameter("account")));
+		 * 
+		 * response.getWriter().append(String.valueOf(result));
+		 */
 		
 	}
 

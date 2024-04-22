@@ -11,4 +11,10 @@ public class MainDao {
 		result=session.selectList("manage.getMenuCategory");
 		return result;
 	}
+	
+	public void writeLog(SqlSession session, String ip){
+		Integer result = null;
+		result= session.insert("manage.writeLog",ip);
+		System.out.println(result);
+	}
 }

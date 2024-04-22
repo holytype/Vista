@@ -2,31 +2,41 @@ package shop.mall.model.dto;
 
 public class MemberInfoDto {
 	
-	private String memberId;
-	private String memberName;
-	private String memberAuth;
+	private String memId;
+	private String memName;
+	private String memAuth;
+	private String logTime;
 	
-	public MemberInfoDto(String memberId, String memberName, String memberAuth) {
+	public MemberInfoDto(String memId, String memName, String memAuth) {
 		super();
-		this.memberId = memberId;
-		this.memberName = memberName;
-		this.memberAuth = memberAuth;
+		this.memId = memId;
+		this.memName = memName;
+		this.memAuth = memAuth;
 	}
-	
+	public MemberInfoDto(String memId, String memName, String memAuth, String logTime) {
+		super();
+		this.memId = memId;
+		this.memName = memName;
+		this.memAuth = memAuth;
+		this.logTime = logTime;
+	}
 	@Override
 	public String toString() {
-		return "MemberInfoDto [memberId=" + memberId + ", memberName=" + memberName + ", memberAuth=" + memberAuth
-				+ "]";
+		return "MemberInfoDto [memId=" + memId + ", memName=" + memName + ", memAuth=" + memAuth + ", logTime="
+				+ logTime + "]";
 	}
-	
-	public String getMemberId() {
-		return memberId;
+	public String getMemId() {
+		return memId;
 	}
-	public String getMemberName() {
-		return memberName;
+	public String getMemName() {
+		return memName;
 	}
-	public String getMemberAuth() {
-		return memberAuth;
+	public String getMemAuth() {
+		return memAuth;
 	}
+	public String getLogTime() {
+		return logTime;
+	}
+
 	
 }

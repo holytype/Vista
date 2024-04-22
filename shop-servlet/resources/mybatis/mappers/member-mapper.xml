@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-
-	<resultMap type="shop.mall.model.dto.MemberInfoDto" id="MemberInfoDtoResultMap">
-		<result column="M_ID" property="memberId"/>
-		<result column="M_NAME" property="memberName"/>
-		<result column="M_AUTH" property="memberAuth"/>
-	</resultMap>
-
-	<select id="idDuplicateCheck" parameterType="string" resultType="integer">
-		select count(*) c from member where mem_id=#{memberId}
+	<select id="memberLogin" parameterType="MemberLoginDto" resultType="MemberInfoDto">
+	SELECT MEM_ID,MEM_NAME,MEM_AUTH FROM MEMBER WHERE MEM_ID=#{memId} and MEM_PW=#{memPw}
 	</select>
 	
-	<select id="memberLogin" parameterType="string" resultMap="MemberInfoDtoResultMap">
-		select M_ID,M_NAME,M_AUTH from member where mem_id=#{memberId} and mem_pw=#{memberPw}
+	<insert id="logInsert" parameterType="MemberLoginDto">
+	
+	</insert>
+
+	<select id="idDuplicateCheck" parameterType="string" resultType="int">
+		SELECT COUNT(*) C FROM MEMBER WHERE MEM_ID=#{memId}
 	</select>
+	
+
+	
+	<select id="getLogId" parameterType="string" resultType="int">
+		SELECT SEQ_LOG_ID.NEXTVAL LOG_ID FROM DUAL;
+	</select>
+	
+		<select id="getLogTime" parameterType="string" resultType="int">
+		SELECT SEQ_LOG_ID.NEXTVAL LOG_ID FROM DUAL;
+	</select>
+	
 </mapper>

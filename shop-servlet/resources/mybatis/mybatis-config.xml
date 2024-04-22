@@ -13,7 +13,7 @@
  	</settings>
  	
  	<typeAliases>
- 		<typeAlias type="shop.mall.model.dto.MemberInfoDto" alias="MemberInfoDto"/>
+ 		<package name="shop.mall.model.dto"/>
  	</typeAliases>
  	
  	<environments default="development1">

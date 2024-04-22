@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -16,34 +19,43 @@ import static shop.mall.common.jdbc.JdbcTemplate.*;
 public class MemberDao {
 	
 	// 로그인
-	public MemberInfoDto memberLogin(Connection conn , MemberLoginDto dto) {
-		MemberInfoDto result = null;
-		String sql = "select M_ID,M_NAME,M_AUTH from member where m_id=? and m_pw=?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getmId());
-			pstmt.setString(2, dto.getmPw());
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				result = new MemberInfoDto(rs.getString("M_ID"), rs.getString("M_NAME"), rs.getString("M_AUTH"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		close(rs);
-		close(pstmt);
+	public List<MemberInfoDto> memberLogin(SqlSession session, MemberLoginDto dto) {
+		List<Map<String,String>> data = session.selectList("member.memberLogin", dto);
+		System.out.println("MemberDao > memberLogin :"+data);
+		List<MemberInfoDto> result = null;
 		return result;
 	}
+	
+	
+	// 로그인
+		public Integer WriteLog(Connection conn , Map<String, Object> data, String ip) {
+			Integer result = null;
+			String sql = "INSERT INTO LOG VALUES(SEQ_LOG_ID.LEXTVAL,?,?,DEFAULT)";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, (String)data.get("memberID"));
+				pstmt.setString(2, ip);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result = rs.getInt("c");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(rs);
+			close(pstmt);
+			return result;
+		}
 	
 	//아이디중복확인
 	public Integer idDuplicateCheck(Connection conn, String mId) {
 		Integer result = null;
-		String sql = "select count(*) c from member where m_id=?";
+		String sql = "select count(*) c from member where MEM_id=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -74,16 +86,14 @@ public class MemberDao {
 		String sql = "insert into member values(?,?,default,?,?,?,?,?,?)";
 		PreparedStatement pstmt=null;
 			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, dto.getMemberId());
-				pstmt.setString(2, dto.getMemberPw());
-				pstmt.setString(3, dto.getMemberName());
-				pstmt.setString(4, dto.getMemberAddr());
-				pstmt.setString(5, dto.getMemberPhone());
-				pstmt.setString(6, dto.getMemberEmail());
-				pstmt.setString(7, dto.getMemberGender());
-				pstmt.setString(8, dto.getMemberAcct());
-				
+				/*
+				 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, dto.getMemberId());
+				 * pstmt.setString(2, dto.getMemberPw()); pstmt.setString(3,
+				 * dto.getMemberName()); pstmt.setString(4, dto.getMemberAddr());
+				 * pstmt.setString(5, dto.getMemberPhone()); pstmt.setString(6,
+				 * dto.getMemberEmail()); pstmt.setString(7, dto.getMemberGender());
+				 * pstmt.setString(8, dto.getMemberAcct());
+				 */
 				result=pstmt.executeUpdate();
 				
 			} catch (Exception e) {

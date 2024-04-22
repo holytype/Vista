@@ -3,7 +3,11 @@
 <mapper namespace="manage">
 
 	<select id="getMenuCategory" resultType="string">
-		SELECT * FROM ITEM_CATEGORY
+		SELECT CATEGORY FROM ITEM_CATEGORY
 	</select>
+	
+	<insert id="writeLog" parameterType="string">
+		INSERT INTO LOG VALUES (SEQ_LOG_ID.NEXTVAL,NULL,#{IP},DEFAULT)
+	</insert>
 	
 </mapper>

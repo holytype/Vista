@@ -79,7 +79,7 @@
 						</div>
 						<div class="option__mid">
 							<span>
-								<input type="text" class="option__count">
+								<input type="text" class="option__count" value="1">
 								<button type="button" class="count__up">&#94;</button>
 								<button type="button"  class="count__down">&#94;</button>
 							</span>

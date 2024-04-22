@@ -10,6 +10,9 @@
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/joinus.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<!-- 주소 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="sidemenu__wrapper">
@@ -26,33 +29,40 @@
 					<tr>
 						<td>아이디</td>
 						<td>
-							<input type="text" name="id">
+							<input type="text" name="id" autocomplete="off" spellcheck="false">
 							<button class="btn__idcheck" type="button">중복확인</button>
+							<span for="id"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="pw"></td>
+						<td><input type="password" name="pw1" autocomplete="off" spellcheck="false"><span for="pw1"></span></td>
 					</tr>
 					<tr>
 						<td>비밀번호확인</td>
-						<td><input type="password" name="pw2"></td>
+						<td><input type="password" name="pw2" autocomplete="off" spellcheck="false"><span for="pw2"></span></td>
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" name="name"></td>
+						<td><input type="text" name="name" autocomplete="off" spellcheck="false"></td>
 					</tr>
 					<tr>
 						<td>휴대전화</td>
-						<td><input type="text" name="phone"></td>
+						<td><input type="text" name="phone" autocomplete="off" spellcheck="false"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td><input type="text" name="email"></td>
+						<td><input type="text" name="email" autocomplete="off" spellcheck="false"></td>
 					</tr>
 					<tr>
 						<td>주소</td>
-						<td><input type="text" name="address"></td>
+						<td>
+							<input type="text" id="postno" placeholder="우편번호" name="address1">
+							<input type="button" value="우편번호 찾기" id="addrBtn"><br>
+							<input type="text" id="adress" placeholder="주소" name="address2"><input type="text" id="add" placeholder="참고항목" name="address3"><br>
+							<input type="text" id="detail" placeholder="상세주소" name="address4">
+							
+						</td>
 					</tr>
 				</table>
 			<strong>추가정보</strong>
@@ -69,9 +79,14 @@
 						<td>
 							<select name="bank">
 								<option value="none" selected disabled hidden="">은행</option>
-								<option value="KB">KB</option>
-								<option value="SH">SH</option>
-								<option value="NH">NH</option>
+								<option value="산업은행">산업은행</option>
+								<option value="기업은행">기업은행</option>
+								<option value="국민은행">국민은행</option>
+								<option value="하나은행">하나은행</option>
+								<option value="농협">농협</option>
+								<option value="우리은행">우리은행</option>
+								<option value="카카오뱅크">카카오뱅크</option>
+								<option value="토스뱅크">토스뱅크</option>
 							</select>
 							<input type="text" name="account">
 						</td>
@@ -85,12 +100,119 @@
 		<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
 	<%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
+	
 	<script>
 	$(loadedHandler);
 	
 	function loadedHandler(){
+		$(".btn__idcheck").css("disabled",true);
 		$(".btn__idcheck").on("click",idcheck);
 		$(".btn__regist").on("click",regist);
+		$("#addrBtn").on("click",addrBtn);
+		formCheck();
+	}
+	
+	function formCheck(){
+		
+        $("input[name=id]").on("input",function(){
+            if($(this).val().length==0){
+                $("[for='"+$(input).attr("name")+"']").text("필수 입력 항목 입니다");
+                $(".btn__idcheck").css("disabled",true);
+            } else {
+                $(`[for='\${$(input).attr("name")}']`).text("");
+                $(".btn__idcheck").css("disabled",false);
+            }
+        });
+
+        $("input[name=pw1]").on("click",function(){      
+
+            if($(this).val().length<7||$(this).val().length>21){
+                $("[for='pw1']").text("영문자 대/소문자 특수만자, 숫자 포함 8~22자");
+            }
+        });
+
+        $("input[name=pw1]").on("input",function(){
+            if($(this).val().length<8||$(this).val().length>22){
+                $("[for='pw1']").text("영문자 대/소문자 특수만자, 숫자 포함 8~22자");
+                
+            } else {
+                $("[for='pw1']").text("");
+
+            }
+        });
+
+        $("input[name=pw]").on("blur",function(){
+            var inputText=$(this).val();
+            var regex = /^[a-zA-Z0-9!@#$%^&*]{8,32}$/;
+            
+            if(inputText.length==0){
+                console.log($("[for="+$(this).attr("name")+"]").text());
+                $("[for='"+$(this).attr("name")+"']").text("필수 입력 항목 입니다");
+            }else if(!regex.test(inputText)){
+                $('[for="'+$(this).attr("name")+'"]').text("영문자 대/소문자 특수문자, 숫자 포함 8~22자");
+            }
+        });
+
+
+        $("input[name=pw2]").on("blur",function(){
+            requiredCheck(this);
+        })
+	}
+	
+    function requiredCheck(input){
+        if($(input).val().length==0){
+                $("[for='"+$(input).attr("name")+"']").text("필수 입력 항목 입니다");
+            } else {
+                $(`[for='\${$(input).attr("name")}']`).text("");
+            }
+    }
+	
+	function addrBtn(){
+		 new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+
+	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("add").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("add").value = '';
+	                }
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('postno').value = data.zonecode;
+	                document.getElementById("adress").value = addr;
+	                // 커서를 상세주소 필드로 이동한다.
+	                document.getElementById("detail").focus();
+	            }
+	        }).open();
 	}
 	
 	function regist(){
@@ -99,8 +221,13 @@
 			method:"post",
 			data:$("#joinus__form").serialize(),
 			success:(result)=>{
-/* 				alert("로그인 페이지로 이동합니다.");
-				location.href="${pageContext.request.contextPath}/login"; */
+
+				if(result=="1"){
+					alert("성공적으로 회원가입되었습니다.\n로그인 페이지로 이동합니다.");
+					location.href="${pageContext.request.contextPath}/login";
+				} else if(result!=null){
+					alert(result);
+				}
 			},
 			error:(request, status, error)=>{
 				alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);

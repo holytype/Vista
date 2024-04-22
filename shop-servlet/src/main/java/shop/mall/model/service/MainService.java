@@ -17,4 +17,10 @@ public class MainService {
 		session.close();
 		return result;
 	}
+	
+	public void writeLog(String ip){
+		SqlSession session = MybatisTemplate.getSqlSession(true);
+		dao.writeLog(session, ip);
+		session.close();
+	}
 }
