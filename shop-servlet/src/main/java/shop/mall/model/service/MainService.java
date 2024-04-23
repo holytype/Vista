@@ -22,5 +22,6 @@ public class MainService {
 		SqlSession session = MybatisTemplate.getSqlSession(true);
 		dao.writeLog(session, ip);
 		session.close();
+		return;
 	}
 }

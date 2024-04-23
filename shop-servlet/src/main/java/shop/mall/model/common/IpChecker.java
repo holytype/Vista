@@ -32,7 +32,8 @@ public class IpChecker {
 	    if (ip.equals("0:0:0:0:0:0:0:1")||ip.equals("127.0.0.1")) {
 	    	try {
 				InetAddress address = InetAddress.getLocalHost();
-				ip = address.getHostName()+"/"+address.getHostAddress();
+				//ip = address.getHostName()+"/"+address.getHostAddress();
+				ip = address.getHostAddress();
 			} catch (UnknownHostException e) {
 				e.printStackTrace();
 			}
