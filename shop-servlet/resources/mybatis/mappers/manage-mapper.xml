@@ -10,9 +10,16 @@
 		SELECT EXTRACT(DAY FROM (SYSTIMESTAMP-MAX(TIME))) T FROM LOG WHERE HOST_IP=#{IP}
 	</select>
 	
-	
 	<insert id="writeLog" parameterType="string">
 		INSERT INTO LOG VALUES (SEQ_LOG_ID.NEXTVAL,NULL,#{IP},DEFAULT)
 	</insert>
+	
+		<insert id="loginLog" parameterType="MemberInfoDto">
+		INSERT INTO LOG VALUES (SEQ_LOG_ID.NEXTVAL,#{memId},#{ip},DEFAULT)
+	</insert>
+	
+	<select id="loginLogTime" parameterType="string" resultType='string'>
+		SELECT TO_CHAR(MAX(TIME),'YYYY-MM-DD HH24:MI:SS') T FROM LOG WHERE HOST_IP=#{IP}
+	</select>
 	
 </mapper>

@@ -14,7 +14,7 @@
 						</c:when>
 						<c:otherwise>
 						<a href="#" onclick="logoutFunction(); return false;">LOGOUT</a>
-						<c:if test="${loginLog.memberAuth==0 }">
+						<c:if test="${loginLog.memAuth==0 }">
 								<a href="${pageContext.request.contextPath }/manager">MANAGER</a>
 						</c:if>
 						</c:otherwise>
@@ -22,7 +22,9 @@
 				</div>
 				<div>
 					<a href="${pageContext.request.contextPath }/myorder">ORDER</a>
+					<c:if test="${!empty loginLog }">
 					<a href="${pageContext.request.contextPath }/mypage">MY PAGE<span></span></a>
+					</c:if>
 					<a href="https://www.doortodoor.co.kr/parcel/pa_004.jsp" target="_blank">DELIVERY</a>
 				</div>
 			</div>

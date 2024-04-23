@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-	<select id="memberLogin" parameterType="MemberLoginDto" resultType="MemberInfoDto">
-	SELECT MEM_ID,MEM_NAME,MEM_AUTH FROM MEMBER WHERE MEM_ID=#{memId} and MEM_PW=#{memPw}
+	<select id="memberLoginName" parameterType="MemberLoginDto" resultType="string">
+	SELECT MEM_NAME FROM MEMBER WHERE MEM_ID=#{memId} and MEM_PW=#{memPw}
+	</select>
+	
+	<select id="memberLoginAuth" parameterType="MemberLoginDto" resultType="string">
+	SELECT MEM_AUTH FROM MEMBER WHERE MEM_ID=#{memId} and MEM_PW=#{memPw}
 	</select>
 	
 	<insert id="registMember" parameterType="MemberDto">

@@ -6,13 +6,14 @@ public class MemberInfoDto {
 	private String memName;
 	private String memAuth;
 	private String logTime;
-	
-	public MemberInfoDto(String memId, String memName, String memAuth) {
+	private String ip;
+
+	public MemberInfoDto(String memId, String ip) {
 		super();
 		this.memId = memId;
-		this.memName = memName;
-		this.memAuth = memAuth;
+		this.ip = ip;
 	}
+
 	public MemberInfoDto(String memId, String memName, String memAuth, String logTime) {
 		super();
 		this.memId = memId;
@@ -20,6 +21,18 @@ public class MemberInfoDto {
 		this.memAuth = memAuth;
 		this.logTime = logTime;
 	}
+	
+
+	
+	public MemberInfoDto(String memId, String memName, String memAuth, String logTime, String ip) {
+		super();
+		this.memId = memId;
+		this.memName = memName;
+		this.memAuth = memAuth;
+		this.logTime = logTime;
+		this.ip = ip;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberInfoDto [memId=" + memId + ", memName=" + memName + ", memAuth=" + memAuth + ", logTime="
@@ -37,6 +50,8 @@ public class MemberInfoDto {
 	public String getLogTime() {
 		return logTime;
 	}
+	public String getIp() {
+		return ip;
+	}
 
-	
 }

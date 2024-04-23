@@ -40,6 +40,7 @@
  	<mappers>
  		<mapper resource="mybatis/mappers/member-mapper.xml"/>
  		<mapper resource="mybatis/mappers/manage-mapper.xml"/>
+ 		<mapper resource="mybatis/mappers/addr-mapper.xml"/>
  	</mappers>
  	
  </configuration>

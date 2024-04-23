@@ -105,7 +105,7 @@
 			.css("cursor","pointer")
 			.hover(()=>{$(".grid."+url).css({"color":"grey","border-color":"grey"})},()=>{$(".grid."+url).css({"color":"black","border-color":"black"})})
 			.on("click",()=>{
-				location.href="${pageContext.request.contextPath}/my"+url;
+				location.href="${pageContext.request.contextPath}/mypage/"+url;
 			});
 		}
 	</script>

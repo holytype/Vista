@@ -25,7 +25,6 @@ public class LogFilter implements Filter {
 		if(request.getSession().getAttribute("firstVisit") == null) {
 			request.getSession().setAttribute("firstVisit",true);
 			service.writeLog(getClientIP(request));
-			System.out.println("LogFilter > LOG INSERT :"+getClientIP(request));
 		}
 		chain.doFilter(request, response);
 	}

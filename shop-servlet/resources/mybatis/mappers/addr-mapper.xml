@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="addr">
+  <select id="getAddr" parameterType="string" resultType="MemberAddressDto">
+  	SELECT DA_ID,MEM_ID,ADDRESS,NAME,POST,PHONE,ADDR_NAME,ADDR_PIN FROM DELIVERY_ADDR WHERE MEM_ID=#{ID}
+  </select>
+  
+  <insert id="insertAddr" parameterType="string">
+  	INSERT INTO DELIVERY_ADDR VALUES(SEQ_DA_ID.nextval,#{memId},#{address},#{memName},#{post},#{phone},#{addrName},#{addrPin})
+  </insert>
+  
+  <delete id="deleteAddr" parameterType="string">
+  	DELETE FROM DELIVERY_ADDR WHERE DA_ID=#{ID}
+  </delete>
+  
+  <update id="updateAddrPin" parameterType="string">
+  	UPDATE DELIVERY_ADDR SET ADDR_PIN='Y' WHERE DA_ID=#{ID}
+  </update>
+  
+  <update id="deleteAddrPin" parameterType="string">
+  	UPDATE DELIVERY_ADDR SET ADDR_PIN='N' WHERE DA_ID=#{ID}
+  </update>
+</mapper>
+

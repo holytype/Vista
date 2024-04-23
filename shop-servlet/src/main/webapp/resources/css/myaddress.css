@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.mypage__wrapper{
+	display:flex;
+	flex-direction: column;
+}
+
+.mypage__wrapper .header{
+	text-align: center;
+	
+}
+
+table {
+	border-spacing: 0;
+}
+
+th {
+	background: #fbfafa;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+}
+
+
+tr{
+	padding: 25px 0;
+}
+
+td {
+	border-bottom: 1px solid #ebebeb;
+	height: 70px;
+}
+
+td:last-child {
+	border-right: none;
+}
+
+.btn__wrapper{
+	margin-top : 30px;
+}
+
+.notice__wrapper div{
+	margin-top : 30px;
+	background: #fbfafa;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+	text-align: center;
+}
+

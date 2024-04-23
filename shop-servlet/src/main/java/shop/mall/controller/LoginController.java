@@ -1,23 +1,20 @@
 package shop.mall.controller;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import shop.mall.model.dto.MemberInfoDto;
 import shop.mall.model.dto.MemberLoginDto;
 import shop.mall.model.service.MemberService;
+
+import static shop.mall.model.common.IpChecker.*;
 
 /**
  * Servlet implementation class login
@@ -48,9 +45,9 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
-		sdf.setTimeZone(tz);
-		String logTime = sdf.format(new Date());
+//		TimeZone tz = TimeZone.getTimeZone("Asia/Seoul");
+//		sdf.setTimeZone(tz);
+//		String logTime = sdf.format(new Date());
 		
 		/*
 		 * Cookie[] cookies = request.getCookies();
@@ -70,17 +67,20 @@ public class LoginController extends HttpServlet {
 		 * } }
 		 */
 		
-		System.out.println(getClientIP(request));
+//		System.out.println(getClientIP(request));
 		
 		MemberInfoDto loginLog = null;
 		loginLog = service.memberLogin(new MemberLoginDto(request.getParameter("id"),request.getParameter("pw")),getClientIP(request));
-
-		if(loginLog!=null) {
-			Cookie cookie = new Cookie("logTime",logTime);
-			cookie.setMaxAge(300);
-			response.addCookie(cookie);
+		
+//		if(loginLog!=null) {
+//			Cookie cookie = new Cookie("logTime",logTime);
+//			cookie.setMaxAge(300);
+//			response.addCookie(cookie);
+//			request.getSession().setAttribute("loginLog", loginLog);
+//		}
+		
+		if(loginLog!=null)
 			request.getSession().setAttribute("loginLog", loginLog);
-		}
 
 		response.getWriter().append(String.valueOf(loginLog));
 	}

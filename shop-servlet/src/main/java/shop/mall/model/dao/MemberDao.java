@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,38 +18,30 @@ import static shop.mall.common.jdbc.JdbcTemplate.*;
 public class MemberDao {
 	
 	// 로그인
-	public List<MemberInfoDto> memberLogin(SqlSession session, MemberLoginDto dto) {
-		List<Map<String,String>> data = session.selectList("member.memberLogin", dto);
-		System.out.println("MemberDao > memberLogin :"+data);
-		List<MemberInfoDto> result = null;
+	public Map<String,String> memberLogin(SqlSession session, MemberLoginDto dto) {
+		Map<String,String> result = null;
+		String name = session.selectOne("member.memberLoginName",dto);
+		String auth = session.selectOne("member.memberLoginAuth",dto);
+		if(name==null||auth==null) {
+			return result;
+		}
+		result=new HashMap<String, String>();
+		result.put("name", name);
+		result.put("auth", auth);
+
 		return result;
 	}
 	
+	// 회원 로그인 로그 삽입/시간반환
+	public String memberLoginLog(SqlSession session, MemberInfoDto dto) {
+		String time = null;
+		Map<String,String> map= new HashMap<String, String>();
+		session.insert("manage.loginLog", dto);
+		time = session.selectOne("manage.loginLogTime",dto.getIp());
+		dto=null;
+		return time;
+	}
 	
-	// 로그인
-		public Integer WriteLog(Connection conn , Map<String, Object> data, String ip) {
-			Integer result = null;
-			String sql = "INSERT INTO LOG VALUES(SEQ_LOG_ID.LEXTVAL,?,?,DEFAULT)";
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, (String)data.get("memberID"));
-				pstmt.setString(2, ip);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					result = rs.getInt("c");
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			close(rs);
-			close(pstmt);
-			return result;
-		}
 	
 	//아이디중복확인
 	public Integer idDuplicateCheck(Connection conn, String mId) {
