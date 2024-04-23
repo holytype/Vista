@@ -21,13 +21,11 @@ public class LogFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("logfilter");
 		HttpServletRequest request = (HttpServletRequest) req;
-		System.out.println(request.getSession().getAttribute("firstVisit"));
 		if(request.getSession().getAttribute("firstVisit") == null) {
 			request.getSession().setAttribute("firstVisit",true);
 			service.writeLog(getClientIP(request));
-			System.out.println("log insert : "+getClientIP(request));
+			System.out.println("LogFilter > LOG INSERT :"+getClientIP(request));
 		}
 		chain.doFilter(request, response);
 	}

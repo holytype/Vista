@@ -5,8 +5,8 @@
 	SELECT MEM_ID,MEM_NAME,MEM_AUTH FROM MEMBER WHERE MEM_ID=#{memId} and MEM_PW=#{memPw}
 	</select>
 	
-	<insert id="logInsert" parameterType="MemberLoginDto">
-	
+	<insert id="registMember" parameterType="MemberDto">
+		INSERT INTO MEMBER VALUES(#{memId},#{memPw},DEFAULT,#{memName},#{memPost},#{memAddr},#{memPhone},#{memEmail},#{memGender},#{memAcct},#{memBank})
 	</insert>
 
 	<select id="idDuplicateCheck" parameterType="string" resultType="int">

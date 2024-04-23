@@ -46,27 +46,22 @@ public class JoinusConteroller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Integer result = null;
-		
-		String postno = request.getParameter("address1");
-		String address = request.getParameter("address2")+request.getParameter("address3")+" "+request.getParameter("address4");
-		
-		if(request.getParameter("pw1")!=request.getParameter("pw2")) {
-			response.getWriter().append("password error");
-			return;
-		}
 
-		/*
-		 * result = service.registMember(new MemberDto(request.getParameter("id"),
-		 * request.getParameter("pw1"),"default",request.getParameter("name"), postno,
-		 * address,request.getParameter("phone"),
-		 * request.getParameter("email"),request.getParameter("gender"),
-		 * request.getParameter("bank"),request.getParameter("account")));
-		 * 
-		 * response.getWriter().append(String.valueOf(result));
-		 */
-		
+		Integer result = null;
+
+		String postno = request.getParameter("address1");
+		String address = request.getParameter("address2") + request.getParameter("address3") + " "
+				+ request.getParameter("address4");
+
+		System.out.println(request.getParameter("gender"));
+		System.out.println(request.getParameter(request.getParameter("bank")));
+		result = service.registMember(new MemberDto(request.getParameter("id"),
+				request.getParameter("pw1"),"default",request.getParameter("name"), postno,
+				address,request.getParameter("phone"),
+				request.getParameter("email"),request.getParameter("gender"),
+				request.getParameter("bank"),request.getParameter("account")));
+
+		response.getWriter().append(String.valueOf(result));
 	}
 
 }

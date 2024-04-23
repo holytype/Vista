@@ -49,9 +49,14 @@ public class MemberService {
 	// 회원가입
 	public Integer registMember(MemberDto dto) {
 		Integer result = null;
-		Connection conn = getConnection(true);
-		result = dao.registMember(conn, dto);
-		close(conn);
+//		Connection conn = getConnection(true);
+//		result = dao.registMember(conn, dto);
+//		close(conn);
+		
+		SqlSession session = MybatisTemplate.getSqlSession(true);
+		result = dao.registMember(session, dto);
+		session.close();
+		
 		return result;
 	}
 

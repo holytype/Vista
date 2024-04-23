@@ -81,26 +81,7 @@ public class MemberDao {
 	}
 	
 	//회원가입
-	public Integer registMember(Connection conn, MemberDto dto) {
-		Integer result = null;
-		String sql = "insert into member values(?,?,default,?,?,?,?,?,?)";
-		PreparedStatement pstmt=null;
-			try {
-				/*
-				 * pstmt = conn.prepareStatement(sql); pstmt.setString(1, dto.getMemberId());
-				 * pstmt.setString(2, dto.getMemberPw()); pstmt.setString(3,
-				 * dto.getMemberName()); pstmt.setString(4, dto.getMemberAddr());
-				 * pstmt.setString(5, dto.getMemberPhone()); pstmt.setString(6,
-				 * dto.getMemberEmail()); pstmt.setString(7, dto.getMemberGender());
-				 * pstmt.setString(8, dto.getMemberAcct());
-				 */
-				result=pstmt.executeUpdate();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		close(pstmt);
-		return result;
+	public Integer registMember(SqlSession session, MemberDto dto) {
+		return session.insert("member.registMember", dto);
 	}
 }

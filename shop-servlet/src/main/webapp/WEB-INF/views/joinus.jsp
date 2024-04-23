@@ -31,16 +31,16 @@
 						<td>
 							<input type="text" name="id" autocomplete="off" spellcheck="false">
 							<button class="btn__idcheck" type="button">중복확인</button>
-							<span for="id"></span>
+							<span class="check id"></span>
 						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="pw1" autocomplete="off" spellcheck="false"><span for="pw1"></span></td>
+						<td><input type="password" name="pw1" autocomplete="off" spellcheck="false"><span class="check pw1"></span></td>
 					</tr>
 					<tr>
 						<td>비밀번호확인</td>
-						<td><input type="password" name="pw2" autocomplete="off" spellcheck="false"><span for="pw2"></span></td>
+						<td><input type="password" name="pw2" autocomplete="off" spellcheck="false"><span class="check pw2"></span></td>
 					</tr>
 					<tr>
 						<td>이름</td>
@@ -57,9 +57,9 @@
 					<tr>
 						<td>주소</td>
 						<td>
-							<input type="text" id="postno" placeholder="우편번호" name="address1">
+							<input type="text" id="postno" placeholder="우편번호" name="address1" readonly>
 							<input type="button" value="우편번호 찾기" id="addrBtn"><br>
-							<input type="text" id="adress" placeholder="주소" name="address2"><input type="text" id="add" placeholder="참고항목" name="address3"><br>
+							<input type="text" id="address" placeholder="주소" name="address2" readonly><input type="text" id="add" placeholder="참고항목" name="address3" readonly><br>
 							<input type="text" id="detail" placeholder="상세주소" name="address4">
 							
 						</td>
@@ -102,10 +102,14 @@
 	<%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
 	
 	<script>
+	var isDuplicate = false;
+	var isPwCheck = false;
 	$(loadedHandler);
 	
 	function loadedHandler(){
-		$(".btn__idcheck").css("disabled",true);
+		
+		$(".btn__idcheck").attr("disabled",true);
+		
 		$(".btn__idcheck").on("click",idcheck);
 		$(".btn__regist").on("click",regist);
 		$("#addrBtn").on("click",addrBtn);
@@ -114,58 +118,96 @@
 	
 	function formCheck(){
 		
-        $("input[name=id]").on("input",function(){
-            if($(this).val().length==0){
-                $("[for='"+$(input).attr("name")+"']").text("필수 입력 항목 입니다");
-                $(".btn__idcheck").css("disabled",true);
-            } else {
-                $(`[for='\${$(input).attr("name")}']`).text("");
-                $(".btn__idcheck").css("disabled",false);
-            }
-        });
-
-        $("input[name=pw1]").on("click",function(){      
-
-            if($(this).val().length<7||$(this).val().length>21){
-                $("[for='pw1']").text("영문자 대/소문자 특수만자, 숫자 포함 8~22자");
-            }
-        });
-
-        $("input[name=pw1]").on("input",function(){
-            if($(this).val().length<8||$(this).val().length>22){
-                $("[for='pw1']").text("영문자 대/소문자 특수만자, 숫자 포함 8~22자");
-                
-            } else {
-                $("[for='pw1']").text("");
-
-            }
-        });
-
-        $("input[name=pw]").on("blur",function(){
-            var inputText=$(this).val();
-            var regex = /^[a-zA-Z0-9!@#$%^&*]{8,32}$/;
-            
+		//아이디
+		$("input[name=id]").on("input",function(){
+			var inputText = $(this).val();
             if(inputText.length==0){
-                console.log($("[for="+$(this).attr("name")+"]").text());
-                $("[for='"+$(this).attr("name")+"']").text("필수 입력 항목 입니다");
-            }else if(!regex.test(inputText)){
-                $('[for="'+$(this).attr("name")+'"]').text("영문자 대/소문자 특수문자, 숫자 포함 8~22자");
+                $(".check.id").text("필수 입력 항목 입니다");
+                $(".btn__idcheck").attr("disabled",true);
+            } else {
+                var regex = /^[a-zA-Z0-9]{4,16}$/;
+                if(regex.test(inputText)){
+                	$(".check.id").text("");
+                	$(".btn__idcheck").attr("disabled",false);
+                } else {
+                	$(".check.id").text("영문 대소문자 숫자 4~16글자");
+                	$(".btn__idcheck").attr("disabled",true);
+                }
+            }
+        });
+                
+		//비밀번호
+        $("input[name=pw1]").on("input",function(){
+        	isPwCheck=false;
+			var inputText = $(this).val();
+            if(inputText.length==0){
+                $(".check.pw1").text("필수 입력 항목 입니다");
+            } else {
+            	var regex = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+                if(regex.test(inputText)){
+                	$(".check.pw1").text("");
+                } else {
+                	$(".check.pw1").text("영문 대소문자 숫자 특수문자 8~16글자");
+                }
+            }
+        	
+        });
+
+        $("input[name=pw2]").on("input",function(){
+        	isPwCheck=false;
+			var inputText = $(this).val();
+            if(inputText.length==0){
+                $(".check.pw2").text("필수 입력 항목 입니다");
+            } else {
+            	var regex = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+                if(regex.test(inputText)){
+                	$(".check.pw2").text("");
+                } else {
+                	$(".check.pw2").text("영문 대소문자 숫자 특수문자 8~16글자");
+                }
+            }
+        });
+
+        $("input[name=pw1]").on("blur",function(){
+            var inputText=$(this).val();
+            
+            if($("input[name=pw2]").val()==""){
+            	isPwCheck=false;
+            	return;
+            }
+            		
+            if(inputText!=$("input[name=pw2]").val()){
+            	$(".check.pw1").text("비밀번호가 일치하지 않습니다.");
+            	isPwCheck=false;
+            }
+            	
+            if(inputText==$("input[name=pw2]").val()){
+            	$(".check.pw1").text("");
+            	isPwCheck=true;
             }
         });
 
 
         $("input[name=pw2]").on("blur",function(){
-            requiredCheck(this);
+            var inputText=$(this).val();
+            
+            if($("input[name=pw1]").val()==""){
+            	isPwCheck=false;
+            	return;
+            }
+            		
+            if(inputText!=$("input[name=pw1]").val()){
+            	$(".check.pw2").text("비밀번호가 일치하지 않습니다.");
+            	isPwCheck=false;
+            }
+            	
+            if(inputText==$("input[name=pw1]").val()){
+            	$(".check.pw2").text("");
+            	isPwCheck=true;
+            }
+
         })
 	}
-	
-    function requiredCheck(input){
-        if($(input).val().length==0){
-                $("[for='"+$(input).attr("name")+"']").text("필수 입력 항목 입니다");
-            } else {
-                $(`[for='\${$(input).attr("name")}']`).text("");
-            }
-    }
 	
 	function addrBtn(){
 		 new daum.Postcode({
@@ -208,7 +250,7 @@
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	                document.getElementById('postno').value = data.zonecode;
-	                document.getElementById("adress").value = addr;
+	                document.getElementById("address").value = addr;
 	                // 커서를 상세주소 필드로 이동한다.
 	                document.getElementById("detail").focus();
 	            }
@@ -216,6 +258,27 @@
 	}
 	
 	function regist(){
+		if(!isDuplicate){
+			alert("아이디 중복체크를 해주세요.");
+			return;
+		}
+		if($("input[name=id]").val()=="" ||
+			$("input[name=pw1]").val()==""	||
+			$("input[name=pw2]").val()==""	||
+			$("input[name=name]").val()==""	||
+			$("input[name=email]").val()==""	||
+			$("input[name=phone]").val()==""	||
+			$("input[name=address1]").val()==""	||
+			$("input[name=address2]").val()==""	||
+			$("input[name=address4]").val()==""){
+			alert("기본정보를 모두 입력해주세요.");
+			return;
+		}
+		if(!isPwCheck){
+			alert("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/joinus",
 			method:"post",
@@ -225,8 +288,8 @@
 				if(result=="1"){
 					alert("성공적으로 회원가입되었습니다.\n로그인 페이지로 이동합니다.");
 					location.href="${pageContext.request.contextPath}/login";
-				} else if(result!=null){
-					alert(result);
+				} else {
+					alert("error\n"result);
 				}
 			},
 			error:(request, status, error)=>{
@@ -243,8 +306,10 @@
 			success:(result)=>{
 				if(result=="0"){
 					alert("사용가능한 아이디 입니다.");
+					isDuplicate=true;
 				} else if(result="1") {
 					alert("중복입니다.")
+					isDuplicate=false;
 				} else {
 					alert("오류가 발생했습니다.\n새로고침 해주세요.");
 				}
