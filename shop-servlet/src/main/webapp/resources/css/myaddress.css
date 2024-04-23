@@ -12,6 +12,7 @@
 
 table {
 	border-spacing: 0;
+	text-align: center;
 }
 
 th {
@@ -20,9 +21,31 @@ th {
 	border-bottom: 1px solid #ebebeb;
 }
 
+th:nth-child(1){
+	width: 150px;
+}
+
+th:nth-child(2){
+	width: 150px;
+}
+
+th:nth-child(3){
+	width: 100px;
+}
+
+th:nth-child(4){
+	width: 200px;
+}
 
 tr{
 	padding: 25px 0;
+}
+
+tr td:first-child {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 td {

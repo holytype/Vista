@@ -1,11 +1,8 @@
 package shop.mall.controller;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +15,6 @@ import com.google.gson.Gson;
 import shop.mall.model.dto.MainGridDto;
 import shop.mall.model.service.MainService;
 
-import static shop.mall.model.common.IpChecker.*;
 
 /**
  * Servlet implementation class MainController

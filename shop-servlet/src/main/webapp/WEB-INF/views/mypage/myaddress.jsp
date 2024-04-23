@@ -40,7 +40,7 @@
 				<c:when test="${empty addrList}">
 					
 					<tr>
-						<td>저장된 배송지가 없습니다.</td>
+						<td colspan="5">저장된 배송지가 없습니다.</td>
 					</tr>
 					
 				</c:when>
@@ -64,8 +64,8 @@
 
 			</table>
 			<div class="btn__wrapper">
-				<button type="button">배송지등록</button>
-				<button type="button">배송지고정</button>
+				<button type="button" id="btnRegist">배송지등록</button>
+				<button type="button" id="btnPin">배송지고정</button>
 			</div>
 			<div class="notice__wrapper">
 				<div> 배송주소록 유의사항</div>
@@ -84,5 +84,10 @@
 		<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
 	<%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
+	<script>
+		$("#btnRegist").on("click",()=>{
+			location.href="${pageContext.request.contextPath}/mypage/address.regist"
+		})
+	</script>
 </body>
 </html>
