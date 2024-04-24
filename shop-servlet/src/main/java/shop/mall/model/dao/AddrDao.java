@@ -13,8 +13,8 @@ public class AddrDao {
 	public Integer insertAddr(SqlSession session, List<MemberAddressDto> dto) {
 		return session.insert("addr.insertAddr", dto);
 	}
-	public Integer deleteAddr(SqlSession session, List<String> dto) {
-		return session.delete("addr.deleteAddr", dto);
+	public Integer deleteAddr(SqlSession session, String id) {
+		return session.delete("addr.deleteAddr", id);
 	}
 	public Integer updateAddrPin(SqlSession session, String id) {
 		return session.update("addr.deleteAddr", id);

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,7 +74,7 @@
 					<!-- <li><span>3</span>배송지 고정은 1개만 저장됩니다. 다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.></li> -->
 					<li><span>1</span>배송 주소록은 최대 5개까지 등록할 수 있습니다.</li>
 					<li><span>2</span>주소록 고정 선택을 선택하시면 선택된 주소록이 기본 배송지로 등록됩니다.</li>
-					<li><span>3</span>다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.></li>
+					<li><span>3</span>다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.</li>
 				</ul>
 			</div>	
 		</div>

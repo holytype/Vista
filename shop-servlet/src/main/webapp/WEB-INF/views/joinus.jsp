@@ -58,7 +58,7 @@
 						<td>주소</td>
 						<td>
 							<input type="text" id="postno" placeholder="우편번호" name="address1" readonly>
-							<input type="button" value="우편번호 찾기" id="addrBtn"><br>
+							<input type="button" value="우편번호 찾기" id="addrBtn" onclick="addrBtn()"><br>
 							<input type="text" id="address" placeholder="주소" name="address2" readonly><input type="text" id="add" placeholder="참고항목" name="address3" readonly><br>
 							<input type="text" id="detail" placeholder="상세주소" name="address4">
 							
@@ -289,7 +289,7 @@
 					alert("성공적으로 회원가입되었습니다.\n로그인 페이지로 이동합니다.");
 					location.href="${pageContext.request.contextPath}/login";
 				} else {
-					alert("error\n"result);
+					alert("error\n"+result);
 				}
 			},
 			error:(request, status, error)=>{

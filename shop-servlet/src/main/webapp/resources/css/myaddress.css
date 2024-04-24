@@ -7,12 +7,15 @@
 
 .mypage__wrapper .header{
 	text-align: center;
-	
 }
 
 table {
 	border-spacing: 0;
 	text-align: center;
+}
+
+th,td {
+	padding: 10px;
 }
 
 th {
@@ -41,12 +44,12 @@ tr{
 	padding: 25px 0;
 }
 
-tr td:first-child {
+/* tr td:first-child {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-}
+} */
 
 td {
 	border-bottom: 1px solid #ebebeb;

@@ -10,6 +10,18 @@ public class MemberAddressDto {
 	private String phone;
 	private String addrName;
 	private String addrPin;
+	
+	public MemberAddressDto(String memId, String address, String name, String post, String phone, String addrName,
+			String addrPin) {
+		super();
+		this.memId = memId;
+		this.address = address;
+		this.name = name;
+		this.post = post;
+		this.phone = phone;
+		this.addrName = addrName;
+		this.addrPin = addrPin;
+	}
 	public MemberAddressDto(String daId, String memId, String address, String name, String post, String phone,
 			String addrName, String addrPin) {
 		super();
@@ -22,11 +34,13 @@ public class MemberAddressDto {
 		this.addrName = addrName;
 		this.addrPin = addrPin;
 	}
+	
 	@Override
 	public String toString() {
 		return "MemberAddressDto [daId=" + daId + ", memId=" + memId + ", address=" + address + ", name=" + name
 				+ ", post=" + post + ", phone=" + phone + ", addrName=" + addrName + ", addrPin=" + addrPin + "]";
 	}
+	
 	public String getDaId() {
 		return daId;
 	}
@@ -51,5 +65,5 @@ public class MemberAddressDto {
 	public String getAddrPin() {
 		return addrPin;
 	}
-
+	
 }

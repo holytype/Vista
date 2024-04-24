@@ -5,12 +5,15 @@
   	SELECT DA_ID,MEM_ID,ADDRESS,NAME,POST,PHONE,ADDR_NAME,ADDR_PIN FROM DELIVERY_ADDR WHERE MEM_ID=#{ID}
   </select>
   
-  <insert id="insertAddr" parameterType="string">
-  	INSERT INTO DELIVERY_ADDR VALUES(SEQ_DA_ID.nextval,#{memId},#{address},#{memName},#{post},#{phone},#{addrName},#{addrPin})
+  <insert id="insertAddr" parameterType="java.util.List">
+  	INSERT INTO DELIVERY_ADDR(DA_ID,MEM_ID,ADDRESS,NAME,POST,PHONE,ADDR_NAME,ADDR_PIN) VALUES
+  	 <foreach collection="list" item="addr" separator=",">
+  	(SEQ_DA_ID.nextval,#{addr.memId},#{addr.address},#{addr.name},#{addr.post},#{addr.phone},#{addr.addrName},#{addr.addrPin})
+  	</foreach>
   </insert>
-  
+
   <delete id="deleteAddr" parameterType="string">
-  	DELETE FROM DELIVERY_ADDR WHERE DA_ID=#{ID}
+  	DELETE FROM DELIVERY_ADDR WHERE MEM_ID=#{ID}
   </delete>
   
   <update id="updateAddrPin" parameterType="string">
