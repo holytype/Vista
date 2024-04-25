@@ -54,18 +54,30 @@
 					<tr>
 						<th>판매가</th>
 						<td>32,900원</td>
-					<tr>
+					</tr>
 					<tr>
 						<th>Color</th>
 						<td>
 						<button class="product__color" type="button">블랙</button>
 						<button class="product__color" type="button">그레이</button>
+						<button class="product__color" type="button">블루</button>
 						</td>
-					<tr>
+					</tr>
 					<tr>
 						<th>Size</th>
-						<td><button class="product__size" type="button">Free</button></td>
-					<tr>
+						<td>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						<button class="product__size" type="button" disabled>Free</button>
+						</td>
+					</tr>
 				</table>
 				<ul class="choice__option">
 					<li class="option">
@@ -78,11 +90,11 @@
 							</p>
 						</div>
 						<div class="option__mid">
-							<span>
+							<div>
 								<input type="text" class="option__count" value="1">
-								<button type="button" class="count__up">&#94;</button>
-								<button type="button"  class="count__down">&#94;</button>
-							</span>
+								<button type="button" class="count up">&#94;</button>
+								<button type="button"  class="count down">&#94;</button>
+							</div>
 							<button  type="button" class="option__delete">x</button>
 						</div>
 						<div class="option__right">
@@ -109,7 +121,7 @@
 				<a href="#review">REVIEW</a>
 				<a href="#qa">Q&A</a>
 			</div>
-			<div class="body">wysiwyg</div>
+			<div class="body">wygiwys
 		</section>
 		<section id="guide">
 			<div class="header">
@@ -189,7 +201,36 @@
 	</div>
 <%@ include file="/WEB-INF/views/common/js/directBtn.jsp" %>
 <script>
-
+	$("button[class=product__color]").on("click",function(){
+		
+		
+		//형제 버튼의 selected 속성을 제거한다.
+		$(this).siblings().removeClass("selected");
+		
+		// selected 클래스를 토글한다.
+		$(this).toggleClass("selected");
+		
+		console.log($(this));
+		console.log($(".product__color.selected").length);
+		
+		
+		if($(this).hasClass("selected")){
+			$("button[class=product__size]").attr("disabled",false);
+		}
+   		/* if($("button[class=product__color]").hasClass("selected")){
+			$("button[class=product__size]").attr("disabled",true);
+		}   */
+		
+	});
+	$("button[class=product__size]").on("click",function(){
+		
+		//형제 버튼의 selected 속성을 제거한다.
+		$(this).siblings().removeClass("selected");
+		
+		// selected 클래스를 토글한다.
+		$(this).toggleClass("selected");
+		
+	});
 </script>
 </body>
 </html>
