@@ -2,7 +2,7 @@ package shop.mall.model.dto;
 
 public class MemberAddressDto {
 
-	private String daId;
+	private Integer daId;
 	private String memId;
 	private String address;
 	private String name;
@@ -10,6 +10,12 @@ public class MemberAddressDto {
 	private String phone;
 	private String addrName;
 	private String addrPin;
+	
+	public MemberAddressDto(Integer daId, String memId) {
+		super();
+		this.daId = daId;
+		this.memId = memId;
+	}
 	
 	public MemberAddressDto(String memId, String address, String name, String post, String phone, String addrName,
 			String addrPin) {
@@ -22,7 +28,7 @@ public class MemberAddressDto {
 		this.addrName = addrName;
 		this.addrPin = addrPin;
 	}
-	public MemberAddressDto(String daId, String memId, String address, String name, String post, String phone,
+	public MemberAddressDto(Integer daId, String memId, String address, String name, String post, String phone,
 			String addrName, String addrPin) {
 		super();
 		this.daId = daId;
@@ -41,7 +47,7 @@ public class MemberAddressDto {
 				+ ", post=" + post + ", phone=" + phone + ", addrName=" + addrName + ", addrPin=" + addrPin + "]";
 	}
 	
-	public String getDaId() {
+	public Integer getDaId() {
 		return daId;
 	}
 	public String getMemId() {

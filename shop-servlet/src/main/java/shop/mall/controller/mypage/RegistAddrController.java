@@ -69,7 +69,8 @@ public class RegistAddrController extends HttpServlet {
 			return;
 		}
 		
-		result =service.insertAddr(addrList,dto.getMemId());
+		result = service.insertAddr(addrList,dto.getMemId());
+		System.out.println(result);
 		response.getWriter().append(String.valueOf(result));
 		
 	}

@@ -48,8 +48,8 @@
 				<c:forEach items="${addrList}" var="addr">
 					<tr>
 						<td>
-						<c:if test="${addr.addrPin eq 'N'}"><input type="radio" name="pin"></c:if>
-						<c:if test="${addr.addrPin eq 'Y'}"><input type="radio" name="pin"  checked="checked"></c:if>
+						<c:if test="${addr.addrPin eq 'N'}"><input type="radio" name="pin" data-id="${addr.daId}"></c:if>
+						<c:if test="${addr.addrPin eq 'Y'}"><input type="radio" name="pin"  checked="checked" data-id="${addr.daId}"></c:if>
 						</td>
 						<td><span>${addr.addrName }</span></td>
 						<td><span>${addr.name }</span></td>
@@ -86,6 +86,26 @@
 	<script>
 		$("#btnRegist").on("click",()=>{
 			location.href="${pageContext.request.contextPath}/mypage/address.regist"
+		})
+	
+		$("#btnPin").on("click",()=>{
+			 let param = {daid:$("input[name=pin]:checked").attr("data-id")};
+			 
+ 			 $.ajax({
+				url:"${pageContext.request.contextPath}/mypage/address",
+				method:"post",
+				data:param,
+				success:(result)=>{
+					if(result==1){
+						alert("배송지가 변경되었습니다.");
+					}else{
+						alert("저장되지 않았습니다.\n다시 시도해주세요.");
+					}
+				},
+				error:(request, status, error)=>{
+					alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
+				}
+			});
 		})
 	</script>
 </body>

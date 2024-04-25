@@ -61,7 +61,7 @@
 							<button type="button" class="ctrl minus">-</button>
 						</div>
 						<div class="radio__wrapper">
-							<input type="radio" class="pin" name="pin1">
+							<input type="radio" class="pin1" name="pin">
 							<span>기본 배송지로 저장</span>
 						</div>
 					</div>
@@ -112,8 +112,8 @@
 								<button type="button" class="ctrl minus">-</button>
 							</div>
 							<div class="radio__wrapper">
-								<c:if test="${addr.addrPin eq 'N'}"><input class="pin" type="radio" name="pin${idx.count}"></c:if>
-								<c:if test="${addr.addrPin eq 'Y'}"><input class="pin" type="radio" name="pin${idx.count}"  checked="checked"></c:if>
+								<c:if test="${addr.addrPin eq 'N'}"><input class="pin${idx.count}" type="radio" name="pin"></c:if>
+								<c:if test="${addr.addrPin eq 'Y'}"><input class="pin${idx.count}" type="radio" name="pin"  checked="checked"></c:if>
 								<span>기본 배송지로 저장</span>
 							</div>
 						</div>
@@ -264,7 +264,7 @@
 			$(this).find(".addrName").attr("name","addrname"+(idx+1));
 			$(this).find(".recipient").attr("name","recipient"+(idx+1));
 			$(this).find(".phone").attr("name","phone"+(idx+1));
-			$(this).find(".pin").attr("name","pin"+(idx+1));
+			$(this).find(".pin").attr("class","pin"+(idx+1));
 			$(this).find(".address.post").attr("name","post"+(idx+1));
 			$(this).find(".address.main").attr("name","main"+(idx+1));
 			$(this).find(".address.ref").attr("name","ref"+(idx+1));
@@ -329,7 +329,7 @@
 	
  	$("#saveBtn").on("click",function(){
 
- 		if($("input[class=pin]:checked").length==1){
+ 		if($("input[name=pin]:checked").length==1){
  			
  	       //객체를 담을 배열을 만든다.
  			const AddrList = [];
@@ -358,8 +358,8 @@
  				}
  				
  				obj.address = adrs;
- 				
- 				if($(this).find(".pin").val()=='on'){
+
+ 				if($(this).find("input[name=pin]").is(':checked')){
  					obj.addrPin = 'Y';
  				} else {
  					obj.addrPin = 'N';
@@ -374,7 +374,7 @@
  		        data:JSON.stringify(AddrList),
  		        contentType: "application/json; charset=utf-8",
  		        success:(result)=>{
- 		        	if(result==$("table").length){
+ 		        	if(result==AddrList.length){
  		        		location.href="${pageContext.request.contextPath}/mypage/address";
  		        	}else {
  		        		alert("데이터가 저장되지 않았습니다.\n다시 시도해 주세요.");

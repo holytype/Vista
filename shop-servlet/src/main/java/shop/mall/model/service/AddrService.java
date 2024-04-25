@@ -27,13 +27,14 @@ public class AddrService {
 		SqlSession session=getSqlSession(false);
 		result=dao.deleteAddr(session, id);
 		result2 = dao.insertAddr(session, dto);
+		
 		if(dto.size()==result2) {
 			session.commit();
 		}else {
 			session.rollback();
 		}
 		session.close();
-		return result;
+		return result2;
 	}
 	// daId로 배송지 삭제하기
 //	public Integer deleteAddr(String id) {
@@ -43,12 +44,19 @@ public class AddrService {
 //	}
 	
 	// 고정 배송지 수정하기
-	public Integer updateAddrPin(String deleteId, String updateId) {
+	public Integer updateAddrPin(MemberAddressDto dto) {
 		Integer result = null;
-		result = dao.deleteAddrPin(getSqlSession(true), deleteId);
-		
-		if(result==1)
-			result = dao.updateAddrPin(getSqlSession(true), updateId);
+		Integer result2 = null;
+		SqlSession session = getSqlSession(false);
+		result2=dao.deleteAddrPin(session, dto.getMemId());
+		result = dao.updateAddrPin(session, dto);
+
+		if(result==1) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
 		return result;
 	}
 }

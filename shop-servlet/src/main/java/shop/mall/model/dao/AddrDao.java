@@ -16,10 +16,11 @@ public class AddrDao {
 	public Integer deleteAddr(SqlSession session, String id) {
 		return session.delete("addr.deleteAddr", id);
 	}
-	public Integer updateAddrPin(SqlSession session, String id) {
-		return session.update("addr.deleteAddr", id);
+	public Integer updateAddrPin(SqlSession session, MemberAddressDto dto) {
+		return session.update("addr.updateAddrPin", dto);
 	}
+	
 	public Integer deleteAddrPin(SqlSession session, String id) {
-		return session.update("addr.deleteAddr", id);
+		return session.update("addr.deleteAddrPin", id);
 	}
 }

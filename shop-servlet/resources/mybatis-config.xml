@@ -5,7 +5,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<properties resource="mybatis/driver.properties"/>
+	<properties resource="driver.properties"/>
 	
  	<settings>
  		<setting name="jdbcTypeForNull" value="NULL"/>
@@ -16,7 +16,7 @@
  		<package name="shop.mall.model.dto"/>
  	</typeAliases>
  	
- 	<environments default="development1">
+ 	<environments default="development2">
  		<environment id="development1">
  			<transactionManager type="JDBC"></transactionManager>
  			<dataSource type="POOLED">
@@ -38,9 +38,9 @@
  	</environments>
  	
  	<mappers>
- 		<mapper resource="mybatis/mappers/member-mapper.xml"/>
- 		<mapper resource="mybatis/mappers/manage-mapper.xml"/>
- 		<mapper resource="mybatis/mappers/addr-mapper.xml"/>
+ 		<mapper resource="mappers/member-mapper.xml"/>
+ 		<mapper resource="mappers/manage-mapper.xml"/>
+ 		<mapper resource="mappers/addr-mapper.xml"/>
  	</mappers>
  	
  </configuration>

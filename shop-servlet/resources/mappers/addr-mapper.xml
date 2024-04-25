@@ -6,22 +6,24 @@
   </select>
   
   <insert id="insertAddr" parameterType="java.util.List">
-  	INSERT INTO DELIVERY_ADDR(DA_ID,MEM_ID,ADDRESS,NAME,POST,PHONE,ADDR_NAME,ADDR_PIN) VALUES
-  	 <foreach collection="list" item="addr" separator=",">
-  	(SEQ_DA_ID.nextval,#{addr.memId},#{addr.address},#{addr.name},#{addr.post},#{addr.phone},#{addr.addrName},#{addr.addrPin})
+  	INSERT ALL 
+  	<foreach collection="list" item="addr" separator=" ">
+  	INTO DELIVERY_ADDR(DA_ID,MEM_ID,NAME,POST,ADDRESS,PHONE,ADDR_NAME,ADDR_PIN) VALUES
+  		(GET_DA_ID(),#{addr.memId},#{addr.name},#{addr.post},#{addr.address},#{addr.phone},#{addr.addrName},#{addr.addrPin})
   	</foreach>
+  	SELECT * FROM DUAL
   </insert>
 
   <delete id="deleteAddr" parameterType="string">
   	DELETE FROM DELIVERY_ADDR WHERE MEM_ID=#{ID}
   </delete>
   
-  <update id="updateAddrPin" parameterType="string">
-  	UPDATE DELIVERY_ADDR SET ADDR_PIN='Y' WHERE DA_ID=#{ID}
+  <update id="updateAddrPin" parameterType="MemberAddressDto">
+  	UPDATE DELIVERY_ADDR SET ADDR_PIN='Y' WHERE DA_ID=#{daId} AND MEM_ID=#{memId}
   </update>
   
-  <update id="deleteAddrPin" parameterType="string">
-  	UPDATE DELIVERY_ADDR SET ADDR_PIN='N' WHERE DA_ID=#{ID}
+   <update id="deleteAddrPin" parameterType="string">
+  	UPDATE DELIVERY_ADDR SET ADDR_PIN='N' WHERE MEM_ID = #{memId}
   </update>
 </mapper>
 

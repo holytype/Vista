@@ -19,7 +19,7 @@ import shop.mall.model.service.MainService;
 /**
  * Servlet implementation class MainController
  */
-@WebServlet("/main")
+@WebServlet({"/main",""})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MainService service = new MainService();

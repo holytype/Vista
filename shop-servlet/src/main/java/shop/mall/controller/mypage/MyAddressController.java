@@ -43,7 +43,10 @@ public class MyAddressController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		MemberInfoDto info = null;
+		info = (MemberInfoDto) request.getSession().getAttribute("loginLog");
+		Integer result = service.updateAddrPin(new MemberAddressDto(Integer.parseInt(request.getParameter("daid")),info.getMemId()));
+		response.getWriter().append(String.valueOf(result));
 	}
 
 }
