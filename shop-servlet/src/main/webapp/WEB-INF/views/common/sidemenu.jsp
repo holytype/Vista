@@ -36,12 +36,12 @@
 				<div class="sidemenu__cart"><a></a></div>
 			</div>
 			<div class="sidemenu__midmenu">
-				<div class="sidemenu__category">
-				<span>CATEGORY</span>
+				<ul class="sidemenu__category">
+				<li><span>CATEGORY</span></li>
 					<c:forEach items="${menuCategory}" var="category">
-					<a href="${pageContext.request.contextPath }/${fn:toLowerCase(category)}">${category }</a>
+					<li><a href="${pageContext.request.contextPath }/${fn:toLowerCase(category)}">${category }</a></li>
 					</c:forEach>
-				</div>
+				</ul>
 				<div class="sidemenu__board">
 				<span>BOARD</span>
 					<a>NOTICE</a>

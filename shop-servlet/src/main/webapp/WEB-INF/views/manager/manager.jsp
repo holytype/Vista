@@ -9,9 +9,11 @@
 <link href="${pageContext.request.contextPath}/resources/css/sidemenu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/editcategory.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/manager/editcategory.jsp" %>
 	<div class="sidemenu__wrapper">
 		<%@ include file="/WEB-INF/views/common/sidemenu.jsp" %>
 	</div>
@@ -22,9 +24,9 @@
 	<div class="mypage__wrapper">
 		<div class ="mypage__title"><strong>Manager</strong></div>
 		<div class="mypage__menu grid">
-			<div class="grid order">
+			<div class="grid category">
 				<strong>CATEGORY</strong>
-				<span>카테고리 추가/제거/수정<span>
+				<span>카테고리 관리</span>
 			</div>
 			<div class="grid profile">
 				<strong>PRODUCT</strong>
@@ -52,18 +54,18 @@
 	<script>
 		$(loadedHandler);
 		function loadedHandler(){
-			linkurl("order");
-			linkurl("profile");
-			linkurl("wishlist");
-			linkurl("mileage");
-			linkurl("board");
-			linkurl("address");
+			linkUrl("category");
+			linkUrl("profile");
+			linkUrl("wishlist");
+			linkUrl("mileage");
+			linkUrl("board");
+			linkUrl("address");
 		}
 		
 		function linkUrl(url){
-			$(".gird."+url).on("click",()=>{
-				location.href="${pageContext.request.contextPath}/"+url;
-			});
+			$(".grid."+url).css({"cursor":"pointer","color":"white","border-color":"transparent","background":"#8e8984"})
+			.hover(()=>{$(".grid."+url).css({"background":"#e5e5e5"})},
+					()=>{$(".grid."+url).css({"color":"white","border-color":"transparent","background":"#8e8984"})});
 		}
 	</script>
 </body>

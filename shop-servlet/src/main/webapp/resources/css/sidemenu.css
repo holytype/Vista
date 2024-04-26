@@ -43,6 +43,10 @@
 	flex-direction: column;
 }
 
+.sidemenu__category li{
+	padding:5px;
+}
+
 .sidemenu__board{
 	display:flex;
 	flex-direction: column;
