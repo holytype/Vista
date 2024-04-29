@@ -1,6 +1,9 @@
 package shop.mall.controller.mypage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,7 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import shop.mall.model.dto.ItemBoardDto;
+import shop.mall.model.dto.ItemBoardFileDto;
 import shop.mall.model.service.BoardService;
 
 /**
@@ -39,8 +48,8 @@ public class MyBoardController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }

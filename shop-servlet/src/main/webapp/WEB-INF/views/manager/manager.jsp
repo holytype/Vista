@@ -28,9 +28,9 @@
 				<strong>CATEGORY</strong>
 				<span>카테고리 관리</span>
 			</div>
-			<div class="grid profile">
+			<div class="grid posting">
 				<strong>PRODUCT</strong>
-				<span>상품 등록/삭제/수정</span>
+				<span>상품 등록</span>
 			</div>
 			<div class="grid wishlist">
 				<strong>NOTICE</strong>
@@ -54,18 +54,26 @@
 	<script>
 		$(loadedHandler);
 		function loadedHandler(){
-			linkUrl("category");
-			linkUrl("profile");
-			linkUrl("wishlist");
-			linkUrl("mileage");
-			linkUrl("board");
-			linkUrl("address");
+			linkCss("category");
+			linkCss("posting");
+			linkCss("wishlist");
+			linkCss("mileage");
+			linkCss("board");
+			linkCss("address");
+			
+			linkUrl("posting");
 		}
 		
-		function linkUrl(url){
+		function linkCss(url){
 			$(".grid."+url).css({"cursor":"pointer","color":"white","border-color":"transparent","background":"#8e8984"})
 			.hover(()=>{$(".grid."+url).css({"background":"#e5e5e5"})},
 					()=>{$(".grid."+url).css({"color":"white","border-color":"transparent","background":"#8e8984"})});
+		}
+		
+		function linkUrl(url){
+			$(".grid."+url).on("click",function(){
+				location.href="${pageContext.request.contextPath}/manager/posting";
+			})
 		}
 	</script>
 </body>
