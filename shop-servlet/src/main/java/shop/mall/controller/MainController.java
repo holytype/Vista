@@ -1,7 +1,6 @@
 package shop.mall.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import shop.mall.model.dto.MainGridDto;
-import shop.mall.model.service.MainService;
+import shop.mall.model.dto.ItemBoardDto;
+import shop.mall.model.service.BoardService;
 
 
 /**
@@ -22,7 +21,7 @@ import shop.mall.model.service.MainService;
 @WebServlet({"/main",""})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	MainService service = new MainService();
+	private BoardService service = new BoardService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,7 +34,6 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("menuCategory", service.getCategory());
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
@@ -43,12 +41,8 @@ public class MainController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MainGridDto dto= new MainGridDto("1", "1", "1", "1", "1");
-		List<MainGridDto> result = new ArrayList<MainGridDto>();
-		result.add(dto);
-		result.add(dto);
-		result.add(dto);
-		result.add(dto);
+		
+		List<ItemBoardDto> result = service.getMainItemBoard();
 		Gson data = new Gson();
 		response.getWriter().append(data.toJson(result));
 	}

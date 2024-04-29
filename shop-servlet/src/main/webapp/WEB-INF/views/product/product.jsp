@@ -18,7 +18,7 @@
 	</div>
 	<div class="body__wrapper">
 		<div class="path">
-		<span>HOME</span>  &gt; <span>Shirts</span>
+		<span>HOME</span>  &gt; <span>SHIRTS</span>
 		</div>
 		<%@ include file="/WEB-INF/views/product/header.jsp" %>
 		<section id="detail">

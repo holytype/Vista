@@ -85,6 +85,7 @@ $.noConflict();
 $(document).ready(function () {
 	slick();
 	listItems();
+	
 });
 
 function slick(){
@@ -128,27 +129,35 @@ function listItems(){
  				var item = data[idx];
 				htmlVal +=`
 					<li class="item__box">
-					<form class="item__form">
-					<input type="hidden" name="boardId" value="\${item.boardId}">
+					<form class="item__form" action="${pageContext.request.contextPath}/product">
+					<input type="hidden" name="boardid" value="\${item.itemBoardId}">
 					</form>
 					<div class="image__box">
-						<img src="\${item.imagePath}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
+						<img src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">		
 					</div>
 					<div class="desc__box">
 						<div class="item__color">
-							<span>흑</span>
-							<span>백</span>
+						`;
+				for(var idx2 in item.colorList){
+					htmlVal +=`<sapn>\${item.colorList[idx2]}</span>`;
+				}			
+				htmlVal +=`
 						</div>
 						<strong class="item__title">\${item.title}</strong>
 						<span class="item__price">\${item.price}원</span>
-						<p class="item__desc">\${item.desc}<p>
+						<p class="item__desc">\${item.content}<p>
 					</div>
 				</li>
 				`;
 			}
 			
  			$(".grid__box").html(htmlVal);
-		
+ 			
+ 			$(".item__box").css("cursor","pointer").on("click",function(){
+ 				console.log($(this).children(".item__form"));
+ 				$(this).children(".item__form").submit();
+ 			})
+			
 		},
 		error:(request, status, error)=>{
 			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);

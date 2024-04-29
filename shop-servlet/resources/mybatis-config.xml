@@ -41,6 +41,7 @@
  		<mapper resource="mappers/member-mapper.xml"/>
  		<mapper resource="mappers/manage-mapper.xml"/>
  		<mapper resource="mappers/addr-mapper.xml"/>
+ 		<mapper resource="mappers/board-mapper.xml"/>
  	</mappers>
  	
  </configuration>
