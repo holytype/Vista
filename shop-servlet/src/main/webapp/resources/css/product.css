@@ -168,8 +168,23 @@
 	margin-right: 0;
 }
 
-.body{
-	height: 1000px;
+#detail .body {
+	padding-top: 50px;
+}
+
+#detail .body figure{
+	padding-bottom: 50px;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+}
+
+#detail .body img{
+	max-width: 1100px;
+	max-height: 1100px;
+	min-width: 800px;
+	min-height: 800px;
 }
 
 .product__color, .product__size{
@@ -205,4 +220,19 @@
 
 .product__header{
 	margin-bottom: 50px;
+}
+
+#guide .body{
+	padding : 70px;
+}
+
+#guide .inner {
+	    border: 1px solid #ccc;
+	    padding: 50px;
+	    background: #f9f9f9;
+	    line-height: 200%;
+}
+
+#guide p {
+	font-size: 16px;
 }

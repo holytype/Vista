@@ -15,21 +15,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import shop.mall.controller.mypage.BoardInsertDto;
-import shop.mall.controller.mypage.MemberInfoDto;
 import shop.mall.model.dto.ItemBoardFileDto;
 
 /**
  * Servlet implementation class ImagePostingController
  */
 @WebServlet("/ImagePostingController")
-public class ImagePostingController extends HttpServlet {
+public class PostingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ImagePostingController() {
+    public PostingController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,7 +53,6 @@ public class ImagePostingController extends HttpServlet {
 					uploadPathFile.mkdirs();
 				}
 				int uploadFileLimit = 10 * 1024 *1024; // 10M제한
-				
 				// form enctype="multipart/form-data" 형태로 전달된 경우
 				MultipartRequest multiReq = new MultipartRequest(req,  // jsp->controll로 전달된 객체 
 						uploadPath,  //  서버에 저장할 디렉토리 
@@ -82,7 +79,7 @@ public class ImagePostingController extends HttpServlet {
 					String fileName = multiReq.getFilesystemName(name);  // 서버에 저장된 파일이름
 					String orginFileName = multiReq.getOriginalFileName(name);
 					String type = multiReq.getContentType(name);  // 전송된 파일의 타입
-//					System.out.println(type);
+					System.out.println(type);
 					File f1= multiReq.getFile(name);  // name을 이용해서 파일 객체 생성 여부 확인 작업.
 					if (f1==null) {  // name을 이용해서 파일 객체 생성에 실패하면
 						System.out.println("파일 업로드 실패");   // 실패 오류메시지  
@@ -93,13 +90,13 @@ public class ImagePostingController extends HttpServlet {
 //					uploadfiles: SQL실습과제5.jpg : SQL실습과제.jpg
 //					uploadfiles_0: t7.PNG : t.PNG
 //					uploadfiles_1: 캡처6.PNG : 캡처.PNG
-					ItemBoardFileDto filedto = new ItemBoardFileDto(fileName, orginFileName);
-					fileList.add(filedto);			
+//					ItemBoardFileDto filedto = new ItemBoardFileDto(fileName, orginFileName);
+//					fileList.add(filedto);			
 				}
 				
 				String subject = multiReq.getParameter("subject");
 				String content = multiReq.getParameter("content");
-				MemberInfoDto memberInfoDto = (MemberInfoDto)req.getSession().getAttribute("sssLogin"); 
+				//MemberInfoDto memberInfoDto = (MemberInfoDto)req.getSession().getAttribute("sssLogin"); 
 //				System.out.println(subject);
 //				System.out.println(content);
 //				BoardInsertDto dto = new BoardInsertDto(subject, content, memberInfoDto.getMemId());

@@ -32,8 +32,8 @@
 		    <section class="product__header">
 			<div class="header__left">
 				<form>
-				<img id="mainImg" src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
-				<input type="file" multiple="multiple" name="image" id="image" style="display: none;" accept="image/*">
+				<img id=preview src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
+				<input type="file" multiple="multiple" name="image" id="uploadInput" style="display: none;" accept="image/*">
 				</form>
 			</div>
 			<div class="header__right">
@@ -45,10 +45,35 @@
 				</div>
 				</form>
 				</div>
+				<button id="btn" type="button">전송</button>
 			</div>
 			</section>
 			
 		<script>
+		 const uploadInput = document.getElementById('uploadInput');
+//		 const preview = document.getElementById('preview');
+
+		  uploadInput.addEventListener('change', function(event) {
+		    const file = event.target.files[0];
+		    if (file) {
+		      const reader = new FileReader();
+		      reader.onload = function(e) {
+		        const img = new Image();
+		        img.src = e.target.result;
+		        img.onload = function() {
+		        	$('#preview').attr('src',img.src);
+//		          preview.innerHTML = ''; // 이전에 표시된 이미지 제거
+//		          preview.appendChild(img); // 새로운 이미지 추가
+		        };
+		      };
+		      reader.readAsDataURL(file);
+		    }
+		  });
+		  
+		  $('#preview').css('cursor','pointer').on("click",function(){
+			  $('#uploadInput').click();
+		  })
+		
 /*       $('textarea#tiny').tinymce({
         height: 500,
         menubar: false,
@@ -74,53 +99,59 @@
     	    inline: true
     	  });
     	  
-    	  $("#mainImg").click(function () {
-    		    $("#image").trigger("click")
+    	  $("#btn").click(function () {
+			//console.log($("h2")[0].outerHTML);
+    		
+    		var formData = new FormData();
+
+    		// 제목과 내용 데이터 추가
+    		var title = $("h2")[0].outerHTML;
+    		var content = document.getElementById('myeditable-div').innerHTML;
+    		formData.append('title', title);
+    		formData.append('content', content);
+    		
+    		// 이미지 파일 추가
+    		var fileInput = document.getElementById('uploadInput');
+    		var file = fileInput.files[0];
+    		if(file!=undefined)
+    			formData.append('image', file);
+    		
+    		 // ajax 호출
+	        $.ajax({
+	            // 요청 URL
+	            url: "${pageContext.request.contextPath}/manager/posting",
+
+	            // 파일 전송 시
+	            enctype: "multipart/form-data",
+
+	            // data의 스트링화(stringify) 방지
+	            processData: false,
+
+	            // contentType header의 default 값 설정 방지
+	            contentType: false,
+	            
+	            // 전송할 데이터
+	            data: formData,
+	            
+	            // 데이터 전송 방식
+	            type: "POST",
+	            
+	            // ajax 요청 성공 시 콜백함수
+	            success: function (result) {
+
+	                // 데이터를 반환받아 실행할 코드
+	                alert("전송내용 : "+result);
+
+	            },
+	            
+	    		error:(request, status, error)=>{
+	    			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
+	    		}
+	            
+	        });
+	        
     		});
     		
-    	  $("#image").on("change", function () {
-
-    	        // input 태그의 파일 데이터
-    	        const files = this.files
-
-    	        // ajax submit용 form data
-    	        const formData = new FormData()
-
-    	        // input 태그 파일을 데이터 순회하며 form data에 추가
-    	        // 첫번째 스트링 인자('image')는 서버에서 multipart file의 파라미터명으로 쓰이므로 주의
-    	        for (let i=0; i<files.length; i++) {
-
-    	            formData.append('image', files[i])
-    	        }
-
-    	        // ajax 호출
-    	        $.ajax({
-    	            // 요청 URL
-    	            url: "${pageContext.request.contextPath}/manager/posting.img",
-
-    	            // 파일 전송 시
-    	            enctype: "multipart/form-data",
-
-    	            // data의 스트링화(stringify) 방지
-    	            processData: false,
-
-    	            // contentType header의 default 값 설정 방지
-    	            contentType: false,
-    	            
-    	            // 전송할 데이터
-    	            data: formData,
-    	            
-    	            // 데이터 전송 방식
-    	            type: "POST",
-    	            
-    	            // ajax 요청 성공 시 콜백함수
-    	            success: function (imgs) {
-
-    	                // 데이터를 반환받아 실행할 코드
-
-    	            }
-    	        })
-    	    });
     </script>
 		
 		<section id="detail">
@@ -128,7 +159,9 @@
 				<a href="#detail">DETAIL</a> <a href="#guide">GUIDE</a> <a
 					href="#review">REVIEW</a> <a href="#qa">Q&amp;A</a>
 			</div>
-			<div class="body">wygiwys</div>
+			<div class="body">
+			<%@ include file="/WEB-INF/views/manager/tagbox.jsp"%>
+			</div>
 		</section>
 		<section id="guide">
 			<div class="header">

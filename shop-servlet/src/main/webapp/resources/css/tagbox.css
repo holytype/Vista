@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.tag{
+	width: 50%;
+	height: auto;
+	position: absolute;
+	top:20%;
+	left:30%;
+	display: flex;
+	flex-direction: column;
+}
+
+.tag div {
+	margin-bottom: 10px;
+}
+.list{
+
+}
+
+.input{
+
+}
+
+.tag ul{
+	background:#fff;
+}
+
+.tag li{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 10px 10px 10px;
+    padding: 3px 13.333px;
+    background: rgb(248, 249, 250);
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    color: rgb(134, 142, 150);
+
+}
+
+.tagItem button{
+	margin-left: 5px;
+}
+
+#oldtag, #newtag{
+	display:flex;
+	
+	flex-wrap:wrap;
+}
+
+#tagmaker{
+	padding: 0px;
+    width: 230px;
+    height: 26px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    margin: 10px;
+}
