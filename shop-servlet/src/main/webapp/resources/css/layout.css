@@ -40,6 +40,64 @@ body {
 	text-decoration-line:none;
 	color:black;
 	z-index: 2002;
+	
+}
+
+#btn__direct #direct__up div{
+	background: url(../images/angle-up-solid.svg) no-repeat;
+	filter: invert(41%) sepia(12%) saturate(10%) hue-rotate(0deg) brightness(93%) contrast(87%);
+	width: 30px;
+	height: 30px;
+}
+
+#btn__direct #direct__up:hover div{
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(160deg) brightness(110%) contrast(102%);
+}
+
+#btn__direct #direct__up{
+	width: 50px;
+	height: 50px;
+	background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+#btn__direct #direct__up:hover{
+	background: #666;
+    border: 1px solid #ddd;
+    color: #fff;
+}
+
+#btn__direct #direct__down div{
+	background: url(../images/angle-down-solid.svg) no-repeat;
+	filter: invert(41%) sepia(12%) saturate(10%) hue-rotate(0deg) brightness(93%) contrast(87%);
+	width: 30px;
+	height: 30px;
+}
+
+#direct__up,#direct__down {
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#btn__direct #direct__down{
+	width: 50px;
+	height: 50px;
+	background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+#btn__direct #direct__down:hover div{
+	filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(160deg) brightness(110%) contrast(102%);
+}
+
+#btn__direct #direct__down:hover{
+	background: #666;
+    border: 1px solid #ddd;
+    color: #fff;
 }
 
 .path{

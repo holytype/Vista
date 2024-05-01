@@ -43,7 +43,7 @@ $(document).ready(function(){
     $('#overlay').click(function(){
         $(this).fadeOut();
         $("#oldtag").html(oldtagHtmlVal);
-        $orignalCategory.css('visibility','visible');
+        $(".sidemenu__category").css('visibility','visible');
     });
 
     // 모달 내부 클릭 시 모달 닫기 방지

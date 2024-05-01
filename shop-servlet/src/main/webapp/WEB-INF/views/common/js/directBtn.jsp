@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <div id="btn__direct" style="display:none">
-	<a id="direct__up">UP</a>
-	<a id="direct__down">DOWN</a>
+	<a id="direct__up"><div></div></a>
+	<a id="direct__down"><div></div></a>
 </div>
 <script>
 	window.onscroll = ()=>{

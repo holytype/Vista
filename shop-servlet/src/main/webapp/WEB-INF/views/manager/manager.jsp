@@ -31,6 +31,13 @@
 				<strong>CATEGORY</strong>
 				<span>카테고리 관리</span>
 			</div>
+			
+			<div class="grid banner">
+				<strong>BANNER</strong>
+				<span>메인 배너 관리</span>
+				<input type="file" id="banner">
+			</div>
+			
 			<div class="grid posting">
 				<strong>PRODUCT</strong>
 				<span>상품 등록</span>
@@ -63,7 +70,8 @@
 			linkCss("mileage");
 			linkCss("board");
 			linkCss("address");
-			
+			linkCss("banner");
+
 			linkUrl("posting");
 		}
 		
@@ -75,9 +83,11 @@
 		
 		function linkUrl(url){
 			$(".grid."+url).on("click",function(){
-				location.href="${pageContext.request.contextPath}/manager/posting";
+				location.href="${pageContext.request.contextPath}/manager/"+url;
 			})
 		}
+		
+		$(".grid.banner").click()
 	</script>
 </body>
 </html>

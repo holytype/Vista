@@ -100,10 +100,10 @@ public class PostingController extends HttpServlet {
 //				System.out.println(subject);
 //				System.out.println(content);
 //				BoardInsertDto dto = new BoardInsertDto(subject, content, memberInfoDto.getMemId());
-				BoardInsertDto dto = new BoardInsertDto(subject, content, "kh1", fileList);  //TODO
-				System.out.println(dto);
-				int result = service.insert(dto);
-				resp.sendRedirect(req.getContextPath()+"/board/list");
+//				BoardInsertDto dto = new BoardInsertDto(subject, content, "kh1", fileList);  //TODO
+//				System.out.println(dto);
+//				int result = service.insert(dto);
+//				resp.sendRedirect(req.getContextPath()+"/board/list");
 	}
 
 }

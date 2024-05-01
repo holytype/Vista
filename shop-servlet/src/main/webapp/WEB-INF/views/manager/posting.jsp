@@ -17,8 +17,11 @@
 	href="${pageContext.request.contextPath}/resources/css/posting.css"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.tiny.cloud/1/at6hlmq6p7gjgeng5egmr946vbn993yhb6rxhlywz7tp0jjw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
+<script
+	src="https://cdn.tiny.cloud/1/at6hlmq6p7gjgeng5egmr946vbn993yhb6rxhlywz7tp0jjw/tinymce/7/tinymce.min.js"
+	referrerpolicy="origin"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@2/dist/tinymce-jquery.min.js"></script>
 </head>
 <body>
 	<div class="sidemenu__wrapper">
@@ -28,27 +31,31 @@
 		<div class="path">
 			<span>HOME</span> &gt; <span>SHIRTS</span>
 		</div>
-		
-		    <section class="product__header">
+
+		<section class="product__header">
 			<div class="header__left">
 				<form>
-				<img id=preview src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
-				<input type="file" multiple="multiple" name="image" id="uploadInput" style="display: none;" accept="image/*">
+					<img id=preview src=""
+						onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
+					<input type="file" multiple="multiple" name="image"
+						id="uploadInput" style="display: none;" accept="image/*">
 				</form>
 			</div>
 			<div class="header__right">
 				<div class="product__content">
-				<form>
-				<h2 id="myeditable-h1">title...</h2>
-				<div id="myeditable-div">
-					<p>content...</p>
+					<form>
+						<h2 id="myeditable-h1">title...</h2>
+						<div id="myeditable-div">
+							<p>content...</p>
+						</div>
+					</form>
 				</div>
-				</form>
-				</div>
-				<button id="btn" type="button">전송</button>
+				<button id="btn" type="button">저장</button>
+				<%@ include file="/WEB-INF/views/manager/colorbox.jsp"%>
+				<%@ include file="/WEB-INF/views/manager/sizebox.jsp"%>
 			</div>
-			</section>
-			
+		</section>
+
 		<script>
 		 const uploadInput = document.getElementById('uploadInput');
 //		 const preview = document.getElementById('preview');
@@ -153,14 +160,14 @@
     		});
     		
     </script>
-		
+
 		<section id="detail">
 			<div class="header">
 				<a href="#detail">DETAIL</a> <a href="#guide">GUIDE</a> <a
 					href="#review">REVIEW</a> <a href="#qa">Q&amp;A</a>
 			</div>
 			<div class="body">
-			<%@ include file="/WEB-INF/views/manager/tagbox.jsp"%>
+				<%@ include file="/WEB-INF/views/manager/tagbox.jsp"%>
 			</div>
 		</section>
 		<section id="guide">
