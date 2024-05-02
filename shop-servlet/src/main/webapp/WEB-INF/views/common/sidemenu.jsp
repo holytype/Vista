@@ -10,7 +10,7 @@
 					<c:choose>
 						<c:when test="${empty loginLog }">
 						<a href="${pageContext.request.contextPath }/login">LOGIN</a>
-						<a href="${pageContext.request.contextPath }/joinus">JOIN US</a><span>+2,000</span>
+						<a href="${pageContext.request.contextPath }/joinus">JOIN US</a>
 						</c:when>
 						<c:otherwise>
 						<a href="#" onclick="logoutFunction(); return false;">LOGOUT</a>

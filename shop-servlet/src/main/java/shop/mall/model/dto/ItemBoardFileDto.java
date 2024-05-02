@@ -1,26 +1,37 @@
 package shop.mall.model.dto;
 
 public class ItemBoardFileDto {
-	private String imageId;
-	private String itemBoardId;
+	private Integer imageId;
+	private Integer itemBoardId;
 	private String filePath;
 	private String fileName;
-	public ItemBoardFileDto(String imageId, String itemBoardId, String filePath, String fileName) {
+	private String originalName;
+	
+	
+	public ItemBoardFileDto(Integer itemBoardId, String filePath, String fileName, String originalName) {
+		super();
+		this.itemBoardId = itemBoardId;
+		this.filePath = filePath;
+		this.fileName = fileName;
+		this.originalName = originalName;
+	}
+	public ItemBoardFileDto(Integer imageId, Integer itemBoardId, String filePath, String fileName, String originalName) {
 		super();
 		this.imageId = imageId;
 		this.itemBoardId = itemBoardId;
 		this.filePath = filePath;
 		this.fileName = fileName;
+		this.originalName = originalName;
 	}
 	@Override
 	public String toString() {
 		return "ItemBoardFileDto [imageId=" + imageId + ", itemBoardId=" + itemBoardId + ", filePath=" + filePath
-				+ ", fileName=" + fileName + "]";
+				+ ", fileName=" + fileName + ", originalName=" + originalName + "]";
 	}
-	public String getImageId() {
+	public Integer getImageId() {
 		return imageId;
 	}
-	public String getItemBoardId() {
+	public Integer getItemBoardId() {
 		return itemBoardId;
 	}
 	public String getFilePath() {
@@ -29,6 +40,7 @@ public class ItemBoardFileDto {
 	public String getFileName() {
 		return fileName;
 	}
-	
-	
+	public String getOriginalName() {
+		return originalName;
+	}
 }

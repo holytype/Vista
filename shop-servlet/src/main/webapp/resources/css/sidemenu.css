@@ -52,6 +52,10 @@
 	flex-direction: column;
 }
 
+.sidemenu__board > * {
+	padding: 5px;
+}
+
 .sidemenu__info{
 	margin-top:10px;
 }

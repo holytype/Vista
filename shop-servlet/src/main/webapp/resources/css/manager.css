@@ -4,6 +4,7 @@
 	flex-direction: column;
 	padding:0 50px;
 	color: black;
+	min-height: 300px;
 }
 
 .mypage__title{

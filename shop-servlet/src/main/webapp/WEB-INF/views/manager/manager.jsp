@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/sidemenu.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/manager.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/editcategory.css" rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/resources/css/tagbox.css"
@@ -35,26 +35,20 @@
 			<div class="grid banner">
 				<strong>BANNER</strong>
 				<span>메인 배너 관리</span>
-				<input type="file" id="banner">
+			</div>
+			
+			<div class="grid under">
+				<strong>BANNER2</strong>
+				<span>배너2 관리</span>
 			</div>
 			
 			<div class="grid posting">
 				<strong>PRODUCT</strong>
 				<span>상품 등록</span>
 			</div>
-			<div class="grid wishlist">
-				<strong>NOTICE</strong>
-				<span>공지사항 관리</span>
-			</div>
-			<div class="grid mileage">
-				<strong>MILEAGE</strong>
-				<span>회원 마일리지 현황</span>
-			</div>
-			<div class="grid board">
-				<strong>ORDER</strong>
-				<span>회원 주문 현황</span>
-			</div>
-		</div>
+		<input type="file" multiple="multiple" name="image" id="banner" style="display: none;" accept="image/*">
+		<input type="file" multiple="multiple" name="image" id="banner2" style="display: none;" accept="image/*">
+	</div>
 	</div>
 	</div>
 	<div class="footer__wrapper">
@@ -66,12 +60,9 @@
 		function loadedHandler(){
 			linkCss("category");
 			linkCss("posting");
-			linkCss("wishlist");
-			linkCss("mileage");
-			linkCss("board");
-			linkCss("address");
+			linkCss("under");
 			linkCss("banner");
-
+			
 			linkUrl("posting");
 		}
 		
@@ -87,7 +78,109 @@
 			})
 		}
 		
-		$(".grid.banner").click()
+		$(".grid.banner").click(function () {
+	        $("#banner").click();
+    	});
+			
+		$("#banner").on('change', function(event) {
+			var formData = new FormData();
+    		
+    		// 이미지 파일 추가
+    		var fileInput = document.getElementById('banner');
+    		
+    		for(var idx in fileInput.files){
+    			console.log(idx);
+    			var file = fileInput.files[idx];
+        		if(file!=undefined)
+        			formData.append('image', file);
+    		}
+
+    		 // ajax 호출
+	        $.ajax({
+	            // 요청 URL
+	            url: "${pageContext.request.contextPath}/manager/banner",
+
+	            // 파일 전송 시
+	            enctype: "multipart/form-data",
+
+	            // data의 스트링화(stringify) 방지
+	            processData: false,
+
+	            // contentType header의 default 값 설정 방지
+	            contentType: false,
+	            
+	            // 전송할 데이터
+	            data: formData,
+	            
+	            // 데이터 전송 방식
+	            type: "POST",
+	            
+	            // ajax 요청 성공 시 콜백함수
+	            success: function (result) {
+
+	                // 데이터를 반환받아 실행할 코드
+	                alert("변경이 완료되었습니다.");
+
+	            },
+	            
+	    		error:(request, status, error)=>{
+	    			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
+	    		}
+	            
+	        });
+		});
+		
+		$(".grid.under").click(function () {
+	        $("#banner2").click();
+    	});
+			
+		$("#banner2").on('change', function(event) {
+			var formData = new FormData();
+    		
+    		// 이미지 파일 추가
+    		var fileInput = document.getElementById('banner2');
+    		
+    		for(var idx in fileInput.files){
+    			console.log(idx);
+    			var file = fileInput.files[idx];
+        		if(file!=undefined)
+        			formData.append('image', file);
+    		}
+
+    		 // ajax 호출
+	        $.ajax({
+	            // 요청 URL
+	            url: "${pageContext.request.contextPath}/manager/under",
+
+	            // 파일 전송 시
+	            enctype: "multipart/form-data",
+
+	            // data의 스트링화(stringify) 방지
+	            processData: false,
+
+	            // contentType header의 default 값 설정 방지
+	            contentType: false,
+	            
+	            // 전송할 데이터
+	            data: formData,
+	            
+	            // 데이터 전송 방식
+	            type: "POST",
+	            
+	            // ajax 요청 성공 시 콜백함수
+	            success: function (result) {
+
+	                // 데이터를 반환받아 실행할 코드
+	            	alert("변경이 완료되었습니다.");
+
+	            },
+	            
+	    		error:(request, status, error)=>{
+	    			alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
+	    		}
+	            
+	        });
+		});
 	</script>
 </body>
 </html>

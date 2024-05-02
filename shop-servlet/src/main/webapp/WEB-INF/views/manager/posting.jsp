@@ -51,8 +51,8 @@
 					</form>
 				</div>
 				<button id="btn" type="button">저장</button>
-				<%@ include file="/WEB-INF/views/manager/colorbox.jsp"%>
-				<%@ include file="/WEB-INF/views/manager/sizebox.jsp"%>
+<%-- 				<%@ include file="/WEB-INF/views/manager/colorbox.jsp"%>
+				<%@ include file="/WEB-INF/views/manager/sizebox.jsp"%> --%>
 			</div>
 		</section>
 

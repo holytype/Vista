@@ -14,7 +14,7 @@
 		INSERT INTO LOG VALUES (SEQ_LOG_ID.NEXTVAL,NULL,#{IP},DEFAULT)
 	</insert>
 	
-		<insert id="loginLog" parameterType="MemberInfoDto">
+	<insert id="loginLog" parameterType="MemberInfoDto">
 		INSERT INTO LOG VALUES (SEQ_LOG_ID.NEXTVAL,#{memId},#{ip},DEFAULT)
 	</insert>
 	
@@ -22,4 +22,50 @@
 		SELECT TO_CHAR(MAX(TIME),'YYYY-MM-DD HH24:MI:SS') T FROM LOG WHERE HOST_IP=#{IP}
 	</select>
 	
+	<delete id="deleteBannerImage">
+	DELETE FROM MAIN_BANNER_FILE WHERE 1=1
+	</delete>
+	
+	<insert id="setBannerImage" parameterType="java.util.List">
+  	INSERT ALL 
+	  	<foreach collection="list" item="image" separator=" ">
+	  	INTO MAIN_BANNER_FILE (IMAGE_ID,ITEM_BOARD_ID,FILE_PATH,FILE_NAME,ORIGIN_NAME) VALUES
+	  		(SEQ_ITEM_BOARD_FILE.NEXTVAL,#{image.itemBoardId},#{image.filePath},#{image.fileName},#{image.originalName})
+	  	</foreach>
+  	SELECT * FROM DUAL
+  	</insert>
+  	
+  	<insert id="setUnderBannerImage" parameterType="java.util.List">
+  	INSERT ALL 
+    <foreach collection="list" item="image" separator=" ">
+	  	INTO UNDER_BANNER_FILE (IMAGE_ID,ITEM_BOARD_ID,FILE_PATH,FILE_NAME,ORIGIN_NAME) VALUES
+	  		(SEQ_ITEM_BOARD_FILE.NEXTVAL,#{image.itemBoardId},#{image.filePath},#{image.fileName},#{image.originalName})
+    </foreach>
+  	SELECT * FROM DUAL
+  	</insert>
+  	
+  	<select id="getBannerImage"  resultType='ItemBoardFileDto'>
+		SELECT * FROM MAIN_BANNER_FILE
+	</select>
+	
+	<delete id="deleteUnderBannerImage">
+	DELETE FROM UNDER_BANNER_FILE WHERE 1=1
+	</delete>
+  	
+	<select id="getUnderBannerImage"  resultType='ItemBoardFileDto'>
+		SELECT * FROM UNDER_BANNER_FILE
+	</select>
+	
+	<delete id="deleteCategory">
+	DELETE FROM ITEM_CATEGORY WHERE 1=1
+	</delete>
+	
+	<insert id="setCategory" parameterType="java.util.List">
+  	INSERT ALL 
+	  	<foreach collection="list" item="c" separator=" ">
+	  	INTO ITEM_CATEGORY (CATEGORY_ID, CATEGORY) VALUES
+	  		(GET_CATEGORY_ID(),#{c})
+	  	</foreach>
+  	SELECT * FROM DUAL
+  	</insert>
 </mapper>

@@ -27,8 +27,6 @@
 			<button type="button" class="btn__login">로그인</button>
 		</form>
 		<div>
-			<a >아이디 찾기</a>
-			<a>비밀번호 찾기</a>
 			<a href="${pageContext.request.contextPath}/joinus">회원가입</a>
 		</div>
 	</div>

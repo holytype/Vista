@@ -55,19 +55,21 @@ $(document).ready(function(){
 		let tagList=[];
 		$(".tagName").each(function(){
 			console.log($(this).text());
-			tagList.push($(this).val());
+			tagList.push($(this).text());
 		});
-		/* $.ajax({
+		 $.ajax({
 			url:"${pageContext.request.contextPath}/manager/category.edit",
 			method:"post",
-			data:,
+	        data:JSON.stringify(tagList),
+	        contentType: "application/json; charset=utf-8",
 			success:(result)=>{
+				alert("저장되었습니다.");
 				location.reload(true);
 			},
 			error:(request, status, error)=>{
 				alert("code : "+request.status+"\nstatus : "+request.responseText+"\nerror : "+error);
 			}
-		}); */
+		}); 
 	})
 });
 

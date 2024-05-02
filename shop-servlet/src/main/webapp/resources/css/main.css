@@ -21,7 +21,7 @@
 }
 
 .main__slider img{
-	max-width: 100%;
+	max-width: 1000px;
 	height: auto;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .slider__menu > ul img{
-	max-width: 100%;
+	max-width: 100%;	
 	height: auto;
 }
 
@@ -116,4 +116,46 @@
 	width: 8px;
 	height: 8px;
 	margin-right: 2px;
+}
+
+.slick-prev{
+	background: url(../images/angle-left-solid.svg) no-repeat;
+	filter: invert(41%) sepia(12%) saturate(10%) hue-rotate(0deg) brightness(93%) contrast(87%);
+	border: 0;
+    padding: 0;
+    box-shadow: none;
+    cursor: pointer;
+    text-indent:-10000px;
+    width: 20px;
+    height: 20px;
+}
+
+.slick-next{
+	background: url(../images/angle-right-solid.svg) no-repeat;
+	filter: invert(41%) sepia(12%) saturate(10%) hue-rotate(0deg) brightness(93%) contrast(87%);
+	border: 0;
+    padding: 0;
+    box-shadow: none;
+    cursor: pointer;
+    text-indent:-10000px;
+    width: 20px;
+    height: 20px;
+} 
+
+.slick-dots li button {
+    font-size: 14px;
+    color: grey;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    line-height: 10px;
+    cursor: pointer;
+}
+
+.slick-dots li.slick-active button {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
 }

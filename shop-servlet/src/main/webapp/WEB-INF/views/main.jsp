@@ -12,7 +12,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
 </head>
 <body>
 	<div class="sidemenu__wrapper">
@@ -23,20 +23,20 @@
 		<section class="slider__wrapper">
 			<div class="slider__inner">
 				<div class="main__slider">
-					<c:if test="${empty slideImage}">
+					<c:if test="${empty banners}">
 						<a><img src="" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
 					</c:if>
-					<c:forEach items="${slideImage}" var="image">
-						<a><img src="${image }" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
+					<c:forEach items="${banners}" var="image">
+						<a><img src="${pageContext.request.contextPath}/files/${image.fileName }" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"></a>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="slider__menu">
 				<ul>
-					<li><img src="${slideMenu[0].image}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[0].desc}</span></li>
-					<li><img src="${slideMenu[1].image}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[1].desc}</span></li>
-					<li><img src="${slideMenu[2].image}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[2].desc}</span></li>
-					<li><img src="${slideMenu[3].image}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[3].desc}</span></li>
+					<li><img src="${pageContext.request.contextPath}/files/${unders[0].fileName}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[0].desc}</span></li>
+					<li><img src="${pageContext.request.contextPath}/files/${unders[1].fileName}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[1].desc}</span></li>
+					<li><img src="${pageContext.request.contextPath}/files/${unders[2].fileName}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[2].desc}</span></li>
+					<li><img src="${pageContext.request.contextPath}/files/${unders[3].fileName}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';"><span>${slideMenu[3].desc}</span></li>
 				</ul>
 			</div>
 		</section>
