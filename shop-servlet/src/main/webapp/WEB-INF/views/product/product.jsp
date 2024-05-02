@@ -32,15 +32,6 @@
 				<figure>
 				  <img src="${pageContext.request.contextPath}/resources/images/errorimage.png" alt="Example Image">
 				</figure>
-				<figure>
-				  <img src="${pageContext.request.contextPath}/resources/images/errorimage.png" alt="Example Image">
-				</figure>
-				<figure>
-				  <img src="${pageContext.request.contextPath}/resources/images/errorimage.png" alt="Example Image">
-				</figure>
-				<figure>
-				  <img src="${pageContext.request.contextPath}/resources/images/errorimage.png" alt="Example Image">
-				</figure>
 			</div>
 		</section>
 		<section id="guide">

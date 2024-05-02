@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
 		<section class="product__header">
 			<div class="header__left">
 				<form>
-					<img id=preview src=""
+					<img id="preview-0" src=""
 						onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/images/errorimage.png';">
 					<input type="file" multiple="multiple" name="image"
 						id="uploadInput" style="display: none;" accept="image/*">
@@ -45,39 +46,75 @@
 				<div class="product__content">
 					<form>
 						<h2 id="myeditable-h1">title...</h2>
+						<select name="category">
+							<option value="none" selected disabled hidden="">카테고리</option>
+							<c:forEach items="${menuCategory}" var="category" varStatus="idx">
+								<option value="${category }">${category }</option>
+							</c:forEach>
+						</select>
 						<div id="myeditable-div">
 							<p>content...</p>
 						</div>
 					</form>
 				</div>
 				<button id="btn" type="button">저장</button>
-<%-- 				<%@ include file="/WEB-INF/views/manager/colorbox.jsp"%>
-				<%@ include file="/WEB-INF/views/manager/sizebox.jsp"%> --%>
 			</div>
 		</section>
+		<section id="detail">
+			<div class="header">
+				<a href="#detail">DETAIL</a> <a href="#guide">GUIDE</a> <a
+					href="#review">REVIEW</a> <a href="#qa">Q&amp;A</a>
+			</div>
+			<div class="body">
 
-		<script>
-		 const uploadInput = document.getElementById('uploadInput');
-//		 const preview = document.getElementById('preview');
+			</div>
+		</section>
+		
+				<script>
 
 		  uploadInput.addEventListener('change', function(event) {
-		    const file = event.target.files[0];
-		    if (file) {
-		      const reader = new FileReader();
-		      reader.onload = function(e) {
-		        const img = new Image();
-		        img.src = e.target.result;
-		        img.onload = function() {
-		        	$('#preview').attr('src',img.src);
-//		          preview.innerHTML = ''; // 이전에 표시된 이미지 제거
-//		          preview.appendChild(img); // 새로운 이미지 추가
-		        };
-		      };
-		      reader.readAsDataURL(file);
-		    }
+			  $("#detail").find("figure").each(function(){
+				  $(this).remove();
+			  })
+			  
+			  const files = event.target.files;
+
+			// 파일 목록을 반복하여 처리합니다.
+			for (let i = 0; i < files.length; i++) {
+				
+				if(i>0){
+					var idx = 'preview-' + i;
+					htmlVal='';
+					htmlVal+=`
+					<figure>
+					  <img id="\${idx}" src="${pageContext.request.contextPath}/resources/images/errorimage.png" alt="Example Image">
+					</figure>`;
+					
+					$("#detail").find(".body").append(htmlVal);
+					
+				}
+				
+			    const reader = new FileReader();
+			    
+			    // 파일을 읽을 때 발생하는 이벤트 핸들러를 설정합니다.
+			    reader.onload = function(e) {
+			        const img = new Image();
+			        img.src = e.target.result;
+			        img.onload = function() {
+			            // 새로운 이미지를 추가합니다. 각 이미지는 서로 다른 요소에 추가됩니다.
+			            $('#preview-' + i).attr('src', img.src);
+			        };
+			    };
+			    
+			    // 파일을 읽습니다.
+			    reader.readAsDataURL(files[i]);
+			}
+		      
+		    	  
+
 		  });
 		  
-		  $('#preview').css('cursor','pointer').on("click",function(){
+		  $('#preview-0').css('cursor','pointer').on("click",function(){
 			  $('#uploadInput').click();
 		  })
 		
@@ -114,14 +151,22 @@
     		// 제목과 내용 데이터 추가
     		var title = $("h2")[0].outerHTML;
     		var content = document.getElementById('myeditable-div').innerHTML;
+    		var category = $("select[name=category]").val();
+    		console.log(category);
     		formData.append('title', title);
     		formData.append('content', content);
+    		formData.append('category', category);
     		
     		// 이미지 파일 추가
     		var fileInput = document.getElementById('uploadInput');
-    		var file = fileInput.files[0];
-    		if(file!=undefined)
-    			formData.append('image', file);
+    		var file = fileInput.files;
+    		
+    		for(var idx in fileInput.files){
+    			console.log(idx);
+    			var file = fileInput.files[idx];
+        		if(file!=undefined)
+        			formData.append('image', file);
+    		}
     		
     		 // ajax 호출
 	        $.ajax({
@@ -159,26 +204,7 @@
 	        
     		});
     		
-    </script>
-
-		<section id="detail">
-			<div class="header">
-				<a href="#detail">DETAIL</a> <a href="#guide">GUIDE</a> <a
-					href="#review">REVIEW</a> <a href="#qa">Q&amp;A</a>
-			</div>
-			<div class="body">
-				<%@ include file="/WEB-INF/views/manager/tagbox.jsp"%>
-			</div>
-		</section>
-		<section id="guide">
-			<div class="header">
-				<a href="#detail">DETAIL</a> <a href="#guide">GUIDE</a> <a
-					href="#review">REVIEW</a> <a href="#qa">Q&amp;A</a>
-			</div>
-			<div class="body"></div>
-		</section>
-		<%@ include file="/WEB-INF/views/product/review.jsp"%>
-		<%@ include file="/WEB-INF/views/product/qa.jsp"%>
+    	</script>
 	</div>
 	<div class="footer__wrapper">
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>

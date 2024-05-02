@@ -41,4 +41,29 @@ public class BoardDao {
 	public ItemBoardDto getItem(SqlSession session, String itemBoardId) {
 		return session.selectOne("board.getItem");
 	}
+	
+	//아이템 등록
+	public Integer postItem(SqlSession session, ItemBoardDto dto) {
+		return session.insert("board.postItem", dto);
+	}
+	
+	//메인 아이템 가져오기
+	public List<ItemBoardDto> getMainItemList(SqlSession session) {
+		return session.selectList("board.getMainItemList");
+	}
+	
+	//아이템 보드 파일 등록
+	public Integer setItemBaordFile(SqlSession session, ItemBoardDto dto) {
+		return session.insert("board.setItemBaordFile", dto);
+	}
+	
+	//아이템 보드 파일 가져오기
+	public Integer getItemBaordFile(SqlSession session, ItemBoardDto dto) {
+		return session.insert("board.getItemBaordFile", dto);
+	}
+	
+	//카테고리별 아이템 아이템
+	public List<ItemBoardDto> getMainItemList(SqlSession session, String category) {
+		return session.selectList("board.getMainItemList",category);
+	}
 }

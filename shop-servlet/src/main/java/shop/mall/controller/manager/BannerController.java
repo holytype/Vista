@@ -74,7 +74,6 @@ public class BannerController extends HttpServlet {
 		System.out.println(imageList.get(0).getItemBoardId());
 		Integer result = service.setBannerImage(imageList);
 		response.getWriter().append(String.valueOf(result));
-
 	}
 
 }

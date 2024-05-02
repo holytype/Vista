@@ -16,6 +16,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import shop.mall.model.dto.ItemBoardFileDto;
+import shop.mall.model.service.BoardService;
+import shop.mall.model.service.ManageService;
 
 /**
  * Servlet implementation class PostItem
@@ -23,6 +25,7 @@ import shop.mall.model.dto.ItemBoardFileDto;
 @WebServlet("/manager/posting")
 public class ProductPostingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	BoardService service = new BoardService();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -64,6 +67,9 @@ public class ProductPostingController extends HttpServlet {
         String content = multiReq.getParameter("content");
         System.out.println("content");
         System.out.println(content);
+        String category = multiReq.getParameter("category");
+        System.out.println("category");
+        System.out.println(category);
 		
 		List<ItemBoardFileDto> fileList = new ArrayList<ItemBoardFileDto>();
 		
@@ -81,12 +87,10 @@ public class ProductPostingController extends HttpServlet {
 //				System.out.println(f1.length());   // 그 파일의 크기 
 			}
 			System.out.println(name + "  :  "+ fileName+"  :  "+orginFileName);
-//			uploadfiles: SQL실습과제5.jpg : SQL실습과제.jpg
-//			uploadfiles_0: t7.PNG : t.PNG
-//			uploadfiles_1: 캡처6.PNG : 캡처.PNG
-//			ItemBoardFileDto filedto = new ItemBoardFileDto(fileName, orginFileName);
-//			fileList.add(filedto);			
+			fileList.add(new ItemBoardFileDto(0,uploadPath, fileName, orginFileName));
 		}
+		
+		
 	}
 
 }
